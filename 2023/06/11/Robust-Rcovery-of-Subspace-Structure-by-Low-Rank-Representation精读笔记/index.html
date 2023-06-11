@@ -1,0 +1,1059 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/R-C.png">
+  <link rel="icon" href="/img/R-C.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="PixelPilot">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation精读笔记 背景 论文链接：Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation RPCA（鲁棒主成分分析）把一个观测到的数据分解成一个干净的数据矩阵和一个稀疏的噪声矩阵的和的形式。 \[ X">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation精读笔记">
+<meta property="og:url" content="https://pixelpilot666.github.io/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Pixel Space">
+<meta property="og:description" content="Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation精读笔记 背景 论文链接：Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation RPCA（鲁棒主成分分析）把一个观测到的数据分解成一个干净的数据矩阵和一个稀疏的噪声矩阵的和的形式。 \[ X">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pixelpilot666.github.io/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230611204449400.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230611205110914.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230611204520431.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/image-20230611205443740.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230611205746804.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230611211625113.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230611211638589.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230611211657415.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230611211711964.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230611211722625.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230611212207401.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230611212217575.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230611212228215.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230611212241343.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230611212256015.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230611212524674.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230611212538141.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230611212600154.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230611212610393.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230611212718429.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230611213022429.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230611213037306.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230611213048119.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230611213057268.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230611213106314.png">
+<meta property="article:published_time" content="2023-06-11T12:09:25.000Z">
+<meta property="article:modified_time" content="2023-06-11T13:43:53.762Z">
+<meta property="article:author" content="PixelPilot">
+<meta property="article:tag" content="LRR低秩表示">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pixelpilot666.github.io/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230611204449400.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation精读笔记 - Pixel Space</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"pixelpilot666.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"2yoCLZjZLSAUgnMqvJ5vzl0I-gzGzoHsz","app_key":"TAADaGFWou9xASz6lIeA4JGy","server_url":"https://2yoclzjz.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Pixel Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/girl.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation精读笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-06-11 20:09" pubdate>
+          2023年6月11日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          30 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation精读笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1
+id="robust-rcovery-of-subspace-structure-by-low-rank-representation精读笔记">Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation精读笔记</h1>
+<h2 id="背景">背景</h2>
+<p>论文链接：<a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/1010.2955.pdf">Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation</a></p>
+<p>RPCA（鲁棒主成分分析）把一个观测到的数据分解成一个干净的数据矩阵和一个稀疏的噪声矩阵的和的形式。
+<span class="math display">\[
+X = D + E
+\]</span> 其中<span class="math inline">\(X\)</span>是观测数据，<span
+class="math inline">\(D\)</span>是要恢复的矩阵，<span
+class="math inline">\(E\)</span>是稀疏的噪声矩阵。</p>
+<p>因为一个好的图像往往是低秩的，因为高质量的图像往往是平滑的，行与行之间往往是线性相关的，这样就会出现低秩。所以<span
+class="math inline">\(D\)</span>是一个低秩的矩阵。</p>
+<p>可以通过秩最小化，来恢复出低秩矩阵<span
+class="math inline">\(D\)</span>。 <span class="math display">\[
+\min_{D,\ E}\ rank(D) + \lambda||E||_l, \qquad s.t.X = D + E
+\]</span> 取得令上述取最小值的<span class="math inline">\(D^*,\
+E^*\)</span> 就得到了低秩矩阵和离散的噪声矩阵。</p>
+<p>上述的方法就是RPCA的主要思想。</p>
+<p>这个方法有一个问题，现实中潜在的数据结构往往来自于多个子空间，但是上述的方法是基于数据的结构只是来自于一个子空间。这就会导致恢复出来的数据不精准。</p>
+<h2 id="解决措施">解决措施</h2>
+<p>为了解决这个问题，作者引入了字典<span
+class="math inline">\(A\)</span>，用<span
+class="math inline">\(AZ\)</span>来表示低秩矩阵，这样就能把这个低秩矩阵看作是多个子空间的线性组合。
+<span class="math display">\[
+\min_{Z,\ E}\ rank(Z) + \lambda||E||_l, \qquad s.t.X=AZ+E
+\]</span> 取令上述公式取得最小值时的<span class="math inline">\(Z^*, \
+E^*\)</span>，由矩阵乘法的性质得出，<span
+class="math inline">\(rank(AZ^*) &lt; rank(Z^*)\)</span>
+，所以恢复出来的矩阵，仍是低秩矩阵。</p>
+<p>另外通过取字典<span class="math inline">\(A = I\)</span>（<span
+class="math inline">\(I\)</span>表示单位阵）则就是RPCA的方法。所以这里可以看作是RPCA的一个推广。</p>
+<h2 id="详细算法">详细算法</h2>
+<p><strong>低秩表示</strong></p>
+<p>因为秩函数不是唯一解，但是在一定条件下，核范数是秩函数的最佳凸松弛。而且作者想要处理的图像主要包含特定值缺失这种类型的错误。所以选择了<span
+class="math inline">\(l_{2,1}\)</span> 。 <span class="math display">\[
+\min_{Z,\ E}\ rank(Z) + \lambda||E||_{2,1}, \qquad s.t. X = AZ + E
+\]</span> 作者使用不精确拉格朗日乘子法（Inexact
+ALM）也叫交替方向乘子法（ADMM）来求最小值点。</p>
+<p><em>交替方向乘子法（Alternating Direction Method of
+Multipliers）通常用于解决存在两个优化变量的只含等式约束的优化类问题</em></p>
+<p>首先引入松弛变量<span
+class="math inline">\(J\)</span>，便于用Singular Value Thresholding（SVT
+奇异阈值法）求解<span
+class="math inline">\(Z\)</span>，使得下面单独优化<span
+class="math inline">\(Z\)</span>时，关于<span
+class="math inline">\(Z\)</span>的损失函数足够简单。</p>
+<p><em>这里可以参考了一篇博客<a
+target="_blank" rel="noopener" href="https://lee-plus-plus.github.io/2023/03/06/optimization_1/">凸优化实战1</a>来理解<span
+class="math inline">\(J\)</span>的作用。</em></p>
+<p>然后写出增广拉格朗日函数： <span class="math display">\[
+L = ||J||_* + \lambda||E||_{2,1} + tr(Y_1^T(X - AZ - E)) +
+tr(Y_2^T(Z-J)) + \frac{\mu}{2}(||X-AZ-E||_F^2 + ||Z-J||_F^2)
+\]</span> 然后按照下列步骤逐渐迭代得出<span class="math inline">\(Z^*,
+E^*\)</span> 。</p>
+<figure>
+<img src="image-20230611204449400.png" srcset="/img/loading.gif" lazyload alt="image-20230611204449400" />
+<figcaption aria-hidden="true">image-20230611204449400</figcaption>
+</figure>
+<p>Step 1可由SVT（奇异值阈值）求解。</p>
+<p>Step 3用以下引理求解。</p>
+<figure>
+<img src="image-20230611205110914.png" srcset="/img/loading.gif" lazyload alt="image-20230611205110914" />
+<figcaption aria-hidden="true">image-20230611205110914</figcaption>
+</figure>
+<p><strong>子空间分割</strong></p>
+<p>通过上述步骤获得了<span class="math inline">\(Z^*,\  E^*\)</span>
+。通过下列步骤获取亲和矩阵<span
+class="math inline">\(W\)</span>，之后把亲和矩阵放入谱聚类算法分割成k类。</p>
+<figure>
+<img src="image-20230611204520431.png" srcset="/img/loading.gif" lazyload alt="image-20230611204520431" />
+<figcaption aria-hidden="true">image-20230611204520431</figcaption>
+</figure>
+<p><strong>估计子空间数目</strong></p>
+<p>获取了亲和矩阵<span
+class="math inline">\(W\)</span>之后，根据下列步骤得出对称归一化拉普拉斯矩阵。</p>
+<figure>
+<img src="/image-20230611205443740.png" srcset="/img/loading.gif" lazyload alt="image-20230611205443740" />
+<figcaption aria-hidden="true">image-20230611205443740</figcaption>
+</figure>
+<p>拉普拉斯矩阵是半正定矩阵，有m个非负特征值。利用它的性质——特征值为0的重数等于图连通分量的个数，来估计子空间数目。</p>
+<p>但是低秩矩阵多少存在些噪声。所以提出了如下的软阈值算法来估计特征值近似0的重数，来估计子空间数目。</p>
+<figure>
+<img src="image-20230611205746804.png" srcset="/img/loading.gif" lazyload alt="image-20230611205746804" />
+<figcaption aria-hidden="true">image-20230611205746804</figcaption>
+</figure>
+<p>这里的<span
+class="math inline">\(n\)</span>表示样本个数。这里的样本数目指的是行向量的个数，因为这里的子空间指的是行空间。</p>
+<p><strong>离群值检测</strong></p>
+<p>离群值检测有两个方法</p>
+<ol type="1">
+<li><p>通过获取的<span
+class="math inline">\(E^*\)</span>的非零列来检测：</p>
+<p>当<span class="math inline">\(||E||_{:,i} &gt;
+\tau\)</span>时，X的第i个分量被视为离群值。</p></li>
+<li><p>通过亲和值来检测：</p>
+<p>亲和度为0或者接近0的分量，被视为离群值。</p></li>
+</ol>
+<h2 id="实验">实验</h2>
+<p><em>本人是一个刚入门的初学者，有很多地方表述不到位，另外有些结论的得出是根据直觉。如有不严谨的地方，请批评指正。</em></p>
+<p><strong>低秩恢复</strong></p>
+<p>这里我找了一些有一些强烈噪声的图像作为观测矩阵。分别使用RPCA和LRR算法处理。</p>
+<figure>
+<img src="image-20230611211625113.png" srcset="/img/loading.gif" lazyload alt="image-20230611211625113" />
+<figcaption aria-hidden="true">image-20230611211625113</figcaption>
+</figure>
+<figure>
+<img src="image-20230611211638589.png" srcset="/img/loading.gif" lazyload alt="image-20230611211638589" />
+<figcaption aria-hidden="true">image-20230611211638589</figcaption>
+</figure>
+<figure>
+<img src="image-20230611211657415.png" srcset="/img/loading.gif" lazyload alt="image-20230611211657415" />
+<figcaption aria-hidden="true">image-20230611211657415</figcaption>
+</figure>
+<figure>
+<img src="image-20230611211711964.png" srcset="/img/loading.gif" lazyload alt="image-20230611211711964" />
+<figcaption aria-hidden="true">image-20230611211711964</figcaption>
+</figure>
+<figure>
+<img src="image-20230611211722625.png" srcset="/img/loading.gif" lazyload alt="image-20230611211722625" />
+<figcaption aria-hidden="true">image-20230611211722625</figcaption>
+</figure>
+<p>​
+通过实验四，我观察到RPCA在去除噪声的同时也会将图像上的一些信息也会去掉。LRR只是会去掉一些横竖向的噪点，不能恢复较为明显的损坏。</p>
+<p>​
+首先RPCA会出现上述结果的原因，是RPCA基于潜在的数据的结构只来自一个低秩子空间。所以恢复的低秩矩阵只会保留较大的子空间，也就是大面积的结构相似的部分，因为只有这样行向量之间线性相关程度更高，所以秩也就越低。因此就会去除很多图像原本包含的信息。</p>
+<p>​
+反观LRR，LRR在设计的时候针对上述问题做了改进，引入了字典A，让低秩矩阵表示为多个子空间的线性组合，这样就使得恢复出来的低秩矩阵可以包含较多子空间的信息，使得观测矩阵的大部分结构都得以保留。但是如果噪声较强，则仍可能保留噪声。</p>
+<p><strong>验证对图像结构的影响</strong></p>
+<p>我用Set
+5数据集，随机对一些行和列产生缺失，来制作噪声图像。然后分别用RPCA和LRR处理。</p>
+<figure>
+<img src="image-20230611212207401.png" srcset="/img/loading.gif" lazyload alt="image-20230611212207401" />
+<figcaption aria-hidden="true">image-20230611212207401</figcaption>
+</figure>
+<figure>
+<img src="image-20230611212217575.png" srcset="/img/loading.gif" lazyload alt="image-20230611212217575" />
+<figcaption aria-hidden="true">image-20230611212217575</figcaption>
+</figure>
+<figure>
+<img src="image-20230611212228215.png" srcset="/img/loading.gif" lazyload alt="image-20230611212228215" />
+<figcaption aria-hidden="true">image-20230611212228215</figcaption>
+</figure>
+<figure>
+<img src="image-20230611212241343.png" srcset="/img/loading.gif" lazyload alt="image-20230611212241343" />
+<figcaption aria-hidden="true">image-20230611212241343</figcaption>
+</figure>
+<figure>
+<img src="image-20230611212256015.png" srcset="/img/loading.gif" lazyload alt="image-20230611212256015" />
+<figcaption aria-hidden="true">image-20230611212256015</figcaption>
+</figure>
+<p>​
+通过实验五，发现RPCA处理过的图像的SSIM和PSNR都有明显的下降，说明RPCA在去除噪声的同时对图像原本的结构也有破坏，而LRR处理之后的图像SSIM与观测图像几乎相同，PSNR在有些情况下还有小幅提升。</p>
+<p><strong>验证<span
+class="math inline">\(\lambda\)</span>的取值对结果的影响</strong></p>
+<p>输入仍是被处理过的Set 5数据集。<span class="math inline">\(\lambda =
+[0.01, 0.50,1.10,4.10]\)</span></p>
+<figure>
+<img src="image-20230611212524674.png" srcset="/img/loading.gif" lazyload alt="image-20230611212524674" />
+<figcaption aria-hidden="true">image-20230611212524674</figcaption>
+</figure>
+<figure>
+<img src="image-20230611212538141.png" srcset="/img/loading.gif" lazyload alt="image-20230611212538141" />
+<figcaption aria-hidden="true">image-20230611212538141</figcaption>
+</figure>
+<figure>
+<img src="image-20230611212600154.png" srcset="/img/loading.gif" lazyload alt="image-20230611212600154" />
+<figcaption aria-hidden="true">image-20230611212600154</figcaption>
+</figure>
+<figure>
+<img src="image-20230611212610393.png" srcset="/img/loading.gif" lazyload alt="image-20230611212610393" />
+<figcaption aria-hidden="true">image-20230611212610393</figcaption>
+</figure>
+<figure>
+<img src="image-20230611212718429.png" srcset="/img/loading.gif" lazyload alt="image-20230611212718429" />
+<figcaption aria-hidden="true">image-20230611212718429</figcaption>
+</figure>
+<p>​ 经过对不同的<span class="math inline">\(\lambda\)</span>
+产生的结果对比，发现LRR算法对参数不敏感，<span
+class="math inline">\(\lambda\)</span>对恢复出的图像质量影响不大。噪声图像差别较大的原因，是在获取了噪声图像之后，进行了归一化操作。我认为对<span
+class="math inline">\(\lambda\)</span>不敏感的原因在于字典的选择，因为字典<span
+class="math inline">\(A\)</span>是来自<span
+class="math inline">\(X\)</span>。</p>
+<table>
+<thead>
+<tr class="header">
+<th><strong>耗时（S）</strong></th>
+<th><strong>LRR</strong></th>
+<th><strong>RPCA</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Baby</td>
+<td>140.211</td>
+<td>9.995</td>
+</tr>
+<tr class="even">
+<td>Bird</td>
+<td>50.88</td>
+<td>2.019</td>
+</tr>
+<tr class="odd">
+<td>Head</td>
+<td>49.015</td>
+<td>1.985</td>
+</tr>
+<tr class="even">
+<td>Woman</td>
+<td>36.01</td>
+<td>1.786</td>
+</tr>
+<tr class="odd">
+<td>Butterfly</td>
+<td>46.08</td>
+<td>1.883</td>
+</tr>
+</tbody>
+</table>
+<p>​ LRR处理一幅较大的彩色图像的时间远大于RPCA处理的时间。</p>
+<p><strong>自带噪声的图像恢复</strong></p>
+<p>这里的数据是来自几个常见的人脸数据集。</p>
+<figure>
+<img src="image-20230611213022429.png" srcset="/img/loading.gif" lazyload alt="image-20230611213022429" />
+<figcaption aria-hidden="true">image-20230611213022429</figcaption>
+</figure>
+<figure>
+<img src="image-20230611213037306.png" srcset="/img/loading.gif" lazyload alt="image-20230611213037306" />
+<figcaption aria-hidden="true">image-20230611213037306</figcaption>
+</figure>
+<figure>
+<img src="image-20230611213048119.png" srcset="/img/loading.gif" lazyload alt="image-20230611213048119" />
+<figcaption aria-hidden="true">image-20230611213048119</figcaption>
+</figure>
+<figure>
+<img src="image-20230611213057268.png" srcset="/img/loading.gif" lazyload alt="image-20230611213057268" />
+<figcaption aria-hidden="true">image-20230611213057268</figcaption>
+</figure>
+<figure>
+<img src="image-20230611213106314.png" srcset="/img/loading.gif" lazyload alt="image-20230611213106314" />
+<figcaption aria-hidden="true">image-20230611213106314</figcaption>
+</figure>
+<p>​
+通过实验七发现，LRR在恢复图像清晰度方面，比RPCA效果好很多。LRR和RPCA在调整图像过曝或过暗方面都有一定的效果，但是通过观察对镜片反光这一现象处理的效果，发现LRR算法作用不大，RPCA能够去除反光的大部分影响。说明在处理严重缺失时，LRR算法还有进步的空间。</p>
+<h2 id="结论">结论</h2>
+<p>通过实验发现，LRR的优缺点如下：</p>
+<p>优点：</p>
+<ol type="1">
+<li>LRR算法恢复的低秩图像，能有效地保留图像的结构，能去除一部分噪声。</li>
+<li>对<span class="math inline">\(\lambda\)</span>的选择不敏感，在<span
+class="math inline">\(\lambda\)</span>不同时，恢复出来的低秩图像质量差别不大。</li>
+</ol>
+<p>缺点：</p>
+<ol type="1">
+<li>在噪声或者异常值严重的时候，无法正确去除。</li>
+<li>处理图片时耗时较长。</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB/" class="category-chain-item">论文精读</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/LRR%E4%BD%8E%E7%A7%A9%E8%A1%A8%E7%A4%BA/">#LRR低秩表示</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation精读笔记</div>
+      <div>https://pixelpilot666.github.io/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation精读笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>PixelPilot</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年6月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/06/09/Image-Super-Resolution-Using-Very-Deep-Residual-Channel-Attention-Networks-%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/" title="Image Super-Resolution Using Very Deep Residual Channel Attention Networks 精读笔记">
+                        <span class="hidden-mobile">Image Super-Resolution Using Very Deep Residual Channel Attention Networks 精读笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"2yoCLZjZLSAUgnMqvJ5vzl0I-gzGzoHsz","appKey":"TAADaGFWou9xASz6lIeA4JGy","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":[],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
