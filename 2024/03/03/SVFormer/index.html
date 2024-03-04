@@ -1,0 +1,1019 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/R-C.png">
+  <link rel="icon" href="/img/R-C.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="PixelPilot">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="SVFormer: Semi-supervised Video Transformer for Action Recognition 阅读笔记  论文地址：SVFormer: Semi-supervised Video Transformer for Action Recognition  亮点：  提出一种新颖的数据增强策略——Tube TokenMix(TTMix)。通过利用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SVFormer: Semi-supervised Video Transformer for Action Recognition">
+<meta property="og:url" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/index.html">
+<meta property="og:site_name" content="Pixel Space">
+<meta property="og:description" content="SVFormer: Semi-supervised Video Transformer for Action Recognition 阅读笔记  论文地址：SVFormer: Semi-supervised Video Transformer for Action Recognition  亮点：  提出一种新颖的数据增强策略——Tube TokenMix(TTMix)。通过利用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/figure_1.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/figure_2.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/figure_3.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/figure_6.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/Algorithm_1.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/figure_5.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/figure_4.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/table_1.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/table_2.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/table_3.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/table_4.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/table_5.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/table_6.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/figure_7.png">
+<meta property="article:published_time" content="2024-03-03T06:53:05.000Z">
+<meta property="article:modified_time" content="2024-03-04T09:40:44.206Z">
+<meta property="article:author" content="PixelPilot">
+<meta property="article:tag" content="动作识别">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/figure_1.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>SVFormer: Semi-supervised Video Transformer for Action Recognition - Pixel Space</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"pixelpilot666.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"2yoCLZjZLSAUgnMqvJ5vzl0I-gzGzoHsz","app_key":"TAADaGFWou9xASz6lIeA4JGy","server_url":"https://2yoclzjz.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Pixel Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/girl.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="SVFormer: Semi-supervised Video Transformer for Action Recognition"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-03 14:53" pubdate>
+          2024年3月3日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          34 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">SVFormer: Semi-supervised Video Transformer for Action Recognition</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1
+id="svformer-semi-supervised-video-transformer-for-action-recognition-阅读笔记">SVFormer:
+Semi-supervised Video Transformer for Action Recognition 阅读笔记</h1>
+<ul>
+<li>论文地址：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2211.13222">SVFormer:
+Semi-supervised Video Transformer for Action Recognition</a></li>
+</ul>
+<h2 id="亮点">亮点：</h2>
+<ol type="1">
+<li>提出一种新颖的数据增强策略——<strong>Tube
+TokenMix(TTMix)</strong>。通过利用具有在时间轴上一致性的masked
+tokens的mask，将视频段混合。</li>
+<li>提出了一种时间扭曲增强技术——<strong>Temporal Warping
+Augmentation(TWAug)</strong>去掩盖视频中复杂的时间变化。这个技术使得选定的帧拉伸到视频段中不同的时间持续期间。</li>
+<li>这篇论文的结果很好，尤其是在Kinetics-400数据集上比SOTA(<a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2112.09690.pdf">CMPL</a>)<strong>涨点31.5%</strong>。</li>
+</ol>
+<h2 id="背景及解决措施">背景及解决措施</h2>
+<p>​
+在互联网上，视频逐渐取代了图片和文字，所以有了很多没有标签的数据。监督学习已经靠着标记数据取得了成功，但是标记数据<strong>太耗费时间和耗费金钱</strong>。为了利用上大规模的无标记数据，所以采用半监督学习做动作识别。</p>
+<p>​
+以前的SSL方法是采用图像增强如Mixup或者CutMix来加速收敛，但是这种方法只适用于图像数据，这种方法用于视频会<strong>使得网络忽视掉视频数据天然具有的时间信息</strong>。所以作者提出了<strong>TTMix</strong>这种适合Video
+Transformer的数据增强方法。</p>
+<p>​
+之前的时间增强方法，只考虑了时间的缩放或移动，<strong>忽视了在人体运动中的各个部分的时间变化</strong>。为了帮助模型学习强时间动态，所以作者提出了<strong>TWAug</strong>。这个方法是对空间增强的补充</p>
+<p>​ TWAug和TTMix结合，实现了<strong>显著的效果提升</strong>。</p>
+<figure>
+<img src="figure_1.png" srcset="/img/loading.gif" lazyload alt="figure_1" />
+<figcaption aria-hidden="true">figure_1</figcaption>
+</figure>
+<h2 id="详细方法">详细方法</h2>
+<p>模型的训练分成两部分：</p>
+<ol type="1">
+<li><p>对于<strong>有标签数据</strong><span
+class="math inline">\(\{(x_l,y_l)\}^{N_l}_{l=1}\)</span>
+，这个模型优化下面的监督学习loss函数<span
+class="math inline">\(\mathcal{L_s}\)</span> <span
+class="math display">\[
+\mathcal{L_S}=\frac{1}{N_L}\sum^{N_L}{\mathcal{H}(\mathcal{F}(x_l),y_l)}
+\]</span></p>
+<p>其中<span class="math inline">\(x_l,y_l\)</span> 分别指的是第<span
+class="math inline">\(l\)</span> 个视频段和其对应的标签。总共有<span
+class="math inline">\(N_l\)</span> 条标记视频。<span
+class="math inline">\(\mathcal{H}(·)\)</span>
+指的是标准交叉熵损失函数，<span
+class="math inline">\(\mathcal{F}(·)\)</span>
+指的是模型的预测结果。</p></li>
+<li><p>对于<strong>无标签数据</strong><span
+class="math inline">\(x_u\)</span>
+，采用<strong>弱增强</strong>（如随机水平翻转、随机缩放、随机剪裁）和<strong>强增强</strong>（如AutoAugment、Dropout）两种措施生成两种视图<span
+class="math inline">\(x_w = \mathcal{A_{weak}}(x_u),\ x_s =
+\mathcal{A_{strong}}(x_u)\)</span>。对弱增强视图进行推理得到数据的伪标签<span
+class="math inline">\(\hat{y}_m = arg\ max(\mathcal{F}(x_w))\)</span>
+。生成的伪标签通过下面的loss函数用于监督强视图。 <span
+class="math display">\[
+\mathcal{L_{un}} = \frac{1}{N_U}
+\sum^{N_U}\mathbb{I}(max(\mathcal{F}(x_w)) &gt;
+\delta)\mathcal{H}(\mathcal{F}(x_s),\hat{y}_w)
+\]</span> 其中<span class="math inline">\(\delta\)</span>
+是置信阈值，<span class="math inline">\(\mathbb{I}\)</span>
+是指示函数，最大类概率大于<span class="math inline">\(\delta\)</span>
+时取1否则取0。这个指示函数用于<strong>过滤噪声伪标签。</strong></p></li>
+</ol>
+<p>为了避免模型在训练的时候崩溃，作者采用<strong>指数移动平均(EMA)-Teacher模型</strong>在FixMatch中。参数更新公式：
+<span class="math display">\[
+\theta_t \gets m \theta_t + (1-m)\theta_s
+\]</span> 其中<span class="math inline">\(m\)</span>时动量系数。<span
+class="math inline">\(\theta_t,\theta_s\)</span>
+分别是teacher模型的参数和student模型的参数。</p>
+<h3 id="tube-tokenmix">Tube TokenMix</h3>
+<figure>
+<img src="figure_2.png" srcset="/img/loading.gif" lazyload alt="figure_2" />
+<figcaption aria-hidden="true">figure_2</figcaption>
+</figure>
+<h4 id="mixing-in-videos">Mixing in Videos</h4>
+<p>参考上面pipeline（pipeline中省略了数据增强的部分）。<strong>Mixing in
+Videos</strong>指的是<span class="math inline">\(x_a,x_b\)</span>
+经过Tube TokenMix 生成 <span class="math inline">\(x_{mix}\)</span>
+的过程。细节如下：</p>
+<ul>
+<li><p>给了两段无标记的视频<span class="math inline">\(x_a,x_b \in
+\mathbb{R}^{H \times W \times T}\)</span></p></li>
+<li><p>利用token级的<span class="math inline">\(M \in \{0,1\}^{H \times
+W \times
+T}\)</span>，进行样本混合。其中H，W是对视频帧进行token化之后的高和宽，T是剪辑长度。这个<span
+class="math inline">\(M\)</span>就是Tube TokenMix生成的蒙版。</p></li>
+<li><p>通过下面的式子混合<span class="math inline">\(x_a,\
+x_b\)</span>。其中<span class="math inline">\(\odot\)</span> 指的是
+element-wise multiplication，对应元素相乘即Hadamard
+Product（学到了高级的表达）<span
+class="math inline">\(\mathbf{1}\)</span> 指的是全为1的矩阵。 <span
+class="math display">\[
+x_{mix} = \mathcal{A_{strong}}(x_a) \odot \mathbf{M} +
+\mathcal{A_{strong}}(x_b) \odot \mathbf{(1-M)}
+\]</span></p></li>
+</ul>
+<p>然后将得到的<span class="math inline">\(x_{mix}\)</span>
+喂入<strong>student model </strong><span
+class="math inline">\(\mathcal{F_s}\)</span> 得到预测标签<span
+class="math inline">\(\hat y_{mix} = \mathcal{F}(x_{mix})\)</span></p>
+<p>先对<span
+class="math inline">\(x_a,\  x_b\)</span>进行弱增强，然后喂到<strong>Teacher
+model</strong>中通过如下过程产生伪标签<span class="math inline">\(\hat
+y_a, \  \hat{y}_b\)</span>: <span class="math display">\[
+\hat{y}_a = arg\ max(\mathcal{F_t}(\mathcal{A_{weak}}(x_a))) \\
+\hat{y}_b = arg\ max(\mathcal{F_t}(\mathcal{A_{weak}}(x_b)))
+\]</span> <strong>注意</strong>如果 $max(((x))) &lt; $ 则<span
+class="math inline">\(\hat y\)</span> 就是<span
+class="math inline">\(\mathcal{F_t}(\mathcal{A_{weak}}(x))\)</span>
+(这里对应了pipeline中的虚线。)</p>
+<p><span
+class="math inline">\(x_{mix}\)</span>的伪标签通过下面的方程生成 <span
+class="math display">\[
+\hat{y}_{mix} = \lambda·\hat{y}_a + (1-\lambda)·\hat{y}_b
+\]</span> 这个方程是参考Mixup方法提出的。</p>
+<p>首先常用于生成<strong>带有高质量伪标签的数据</strong>的数据增强方法是Mixup。通过<strong>对样本-标签对进行如下的凸组合</strong>的方式生成新的数据。
+<span class="math display">\[
+\hat{x} = \lambda·x_1 + (1-\lambda)·x_2, \\
+\hat{y} = \lambda·y_1 + (1-\lambda)·y_2,
+\]</span> 其中 <span class="math inline">\(\lambda\)</span> 符合<span
+class="math inline">\(\beta\)</span>分布。</p>
+<figure>
+<img src="figure_3.png" srcset="/img/loading.gif" lazyload alt="figure_3" />
+<figcaption aria-hidden="true">figure_3</figcaption>
+</figure>
+<figure>
+<img src="figure_6.png" srcset="/img/loading.gif" lazyload alt="figure_6" />
+<figcaption aria-hidden="true">figure_6</figcaption>
+</figure>
+<p>这里为了可视化，所以在图像级展示了各种混合方法的效果。陈</p>
+<ul>
+<li>Mixup是两幅图像像素加权融合。</li>
+<li>CutMix是随机剪切图像块状融合。</li>
+<li>PixMix是像素级的融合，像素值不是选a的帧就是选b的帧。</li>
+<li>FrameTokenMix是在时间轴上，从视频段a中选择帧替换掉视频段b中对应时间的帧从而形成新的视频段。</li>
+<li>RandTokenMix是在每个a，b对应的帧上，使用PixMix，然后在生成新的视频段上的不同帧的过程中用的mask每次都不同。</li>
+<li>TubeTokenMix跟RandTokenMix的区别就是，不同时间上的帧融合用的mask相同。</li>
+</ul>
+<p>最后student model通过下面的一致性损失函数进行优化： <span
+class="math display">\[
+\mathcal{L}_{mix} = \frac{1}{N_m}\sum^{N_m}(\hat{y}_{mix} - y_{mix})^2
+\]</span> 其中<span class="math inline">\(N_m\)</span> 是混合样本<span
+class="math inline">\(x_{mix}\)</span>的数目。</p>
+<p>对于<strong>TTMix的一致性损失算法</strong>如下：</p>
+<figure>
+<img src="Algorithm_1.png" srcset="/img/loading.gif" lazyload alt="Algorithm_1" />
+<figcaption aria-hidden="true">Algorithm_1</figcaption>
+</figure>
+<h4 id="temporal-warping-augmentationtwaug">Temporal Warping
+Augmentation(TWAug)</h4>
+<p>这部分的作用是，能够把一帧拉伸到不同的时间长度，这样做是为了给数据引入更多的随机性。</p>
+<figure>
+<img src="figure_5.png" srcset="/img/loading.gif" lazyload alt="figure_5" />
+<figcaption aria-hidden="true">figure_5</figcaption>
+</figure>
+<p>给定一个T帧的视频如上图，随机决定是保存全部的帧，或者保存小部分帧。对于保存部分帧的情况，会随机填充邻近的可见帧。作者说<strong>TWAug可以帮助模型在训练过程中学习灵活的时间动态</strong>。</p>
+<figure>
+<img src="figure_4.png" srcset="/img/loading.gif" lazyload alt="figure_4" />
+<figcaption aria-hidden="true">figure_4</figcaption>
+</figure>
+<p>如上图所示，作者采用了常规增强（对Clip<span
+class="math inline">\(x_a\)</span> 的处理）和TWAug（对Clip<span
+class="math inline">\(x_b\)</span>
+的处理）两种方式分别处理两个输入，然后再经过TTMix进行混合。</p>
+<h3 id="训练过程">训练过程</h3>
+<p>训练分为三部分：</p>
+<ol type="1">
+<li><p>监督学习 <span class="math display">\[
+\mathcal{L_S}=\frac{1}{N_L}\sum^{N_L}{\mathcal{H}(\mathcal{F}(x_l),y_l)}
+\]</span></p></li>
+<li><p>无监督伪标签一致性损失 <span class="math display">\[
+\mathcal{L_{un}} = \frac{1}{N_U}
+\sum^{N_U}\mathbb{I}(max(\mathcal{F}(x_w)) &gt;
+\delta)\mathcal{H}(\mathcal{F}(x_s),\hat{y}_w)
+\]</span></p></li>
+<li><p>TTMix一致性损失 <span class="math display">\[
+\mathcal{L}_{mix} = \frac{1}{N_m}\sum^{N_m}(\hat{y}_{mix} - y_{mix})^2
+\]</span></p></li>
+</ol>
+<p>最后损失函数如下： <span class="math display">\[
+\mathcal{L_{all}} = \mathcal{L_s} +
+\gamma_1\mathcal{L_{un}}+\gamma_2\mathcal{L_{mix}}
+\]</span> 其中<span class="math inline">\(\gamma_1,\ \gamma_2\)</span>
+是用于平衡损失的超参数。</p>
+<h2 id="实验结果">实验结果</h2>
+<ul>
+<li><p>Baseline是TimeSformer</p></li>
+<li><p>8或16张GPU（具体型号没找到）</p></li>
+<li><p>数据集</p>
+<ul>
+<li>Kinetics-400</li>
+<li>UCF-101</li>
+</ul></li>
+</ul>
+<h3 id="与sota方法比较">与SOTA方法比较</h3>
+<figure>
+<img src="table_1.png" srcset="/img/loading.gif" lazyload alt="table_1" />
+<figcaption aria-hidden="true">table_1</figcaption>
+</figure>
+<figure>
+<img src="table_2.png" srcset="/img/loading.gif" lazyload alt="table_2" />
+<figcaption aria-hidden="true">table_2</figcaption>
+</figure>
+<h3 id="ssl-框架选择">SSL 框架选择</h3>
+<figure>
+<img src="table_3.png" srcset="/img/loading.gif" lazyload alt="table_3" />
+<figcaption aria-hidden="true">table_3</figcaption>
+</figure>
+<h3 id="tokenmix-效果比较">TokenMix 效果比较</h3>
+<figure>
+<img src="table_4.png" srcset="/img/loading.gif" lazyload alt="table_4" />
+<figcaption aria-hidden="true">table_4</figcaption>
+</figure>
+<h3 id="时间空间变换增强有效性效果">时间、空间变换增强有效性效果</h3>
+<figure>
+<img src="table_5.png" srcset="/img/loading.gif" lazyload alt="table_5" />
+<figcaption aria-hidden="true">table_5</figcaption>
+</figure>
+<h3 id="不同推理方案的有效性效果">不同推理方案的有效性效果</h3>
+<figure>
+<img src="table_6.png" srcset="/img/loading.gif" lazyload alt="table_6" />
+<figcaption aria-hidden="true">table_6</figcaption>
+</figure>
+<h3 id="超参数对结果的影响">超参数对结果的影响</h3>
+<figure>
+<img src="figure_7.png" srcset="/img/loading.gif" lazyload alt="figure_7" />
+<figcaption aria-hidden="true">figure_7</figcaption>
+</figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%BA%E6%96%87%E7%B2%97%E8%AF%BB/" class="category-chain-item">论文粗读</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB/">#动作识别</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>SVFormer: Semi-supervised Video Transformer for Action Recognition</div>
+      <div>https://pixelpilot666.github.io/2024/03/03/SVFormer/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>PixelPilot</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年3月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/" title="Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation精读笔记">
+                        <span class="hidden-mobile">Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation精读笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"2yoCLZjZLSAUgnMqvJ5vzl0I-gzGzoHsz","appKey":"TAADaGFWou9xASz6lIeA4JGy","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":[],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
