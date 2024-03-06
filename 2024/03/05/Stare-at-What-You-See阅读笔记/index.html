@@ -16,39 +16,35 @@
   <meta name="author" content="PixelPilot">
   <meta name="keywords" content="">
   
-    <meta name="description" content="SVFormer: Semi-supervised Video Transformer for Action Recognition 阅读笔记  论文地址：SVFormer: Semi-supervised Video Transformer for Action Recognition  亮点：  提出一种新颖的数据增强策略——Tube TokenMix(TTMix)。通过利用">
+    <meta name="description" content="Stare at What You See: Masked Image Modeling without Reconstruction 阅读笔记   论文标题   论文地址：2211.08887.pdf (arxiv.org) 该论文收录于CVPR2023  亮点  在Masked Image Modeling(MIM)中提出MaskAlign使得不用在masked">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SVFormer: Semi-supervised Video Transformer for Action Recognition">
-<meta property="og:url" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/index.html">
+<meta property="og:title" content="Stare-at-What-You-See阅读笔记">
+<meta property="og:url" content="https://pixelpilot666.github.io/2024/03/05/Stare-at-What-You-See%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Pixel Pilot">
-<meta property="og:description" content="SVFormer: Semi-supervised Video Transformer for Action Recognition 阅读笔记  论文地址：SVFormer: Semi-supervised Video Transformer for Action Recognition  亮点：  提出一种新颖的数据增强策略——Tube TokenMix(TTMix)。通过利用">
+<meta property="og:description" content="Stare at What You See: Masked Image Modeling without Reconstruction 阅读笔记   论文标题   论文地址：2211.08887.pdf (arxiv.org) 该论文收录于CVPR2023  亮点  在Masked Image Modeling(MIM)中提出MaskAlign使得不用在masked">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/figure_1.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/figure_2.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/figure_3.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/figure_6.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/Algorithm_1.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/figure_5.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/figure_4.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/table_1.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/table_2.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/table_3.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/table_4.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/table_5.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/table_6.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/figure_7.png">
-<meta property="article:published_time" content="2024-03-03T06:53:05.000Z">
-<meta property="article:modified_time" content="2024-03-04T10:42:16.547Z">
+<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/05/Stare-at-What-You-See%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/title.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/05/Stare-at-What-You-See%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/figure_2.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/05/Stare-at-What-You-See%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/table_1.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/05/Stare-at-What-You-See%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/table_2.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/05/Stare-at-What-You-See%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/table_3.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/05/Stare-at-What-You-See%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/table_4.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/05/Stare-at-What-You-See%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/table_5.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/05/Stare-at-What-You-See%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/table_6.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/05/Stare-at-What-You-See%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/table_7.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/05/Stare-at-What-You-See%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/figure_3.png">
+<meta property="article:published_time" content="2024-03-05T12:28:43.000Z">
+<meta property="article:modified_time" content="2024-03-06T11:27:40.929Z">
 <meta property="article:author" content="PixelPilot">
-<meta property="article:tag" content="动作识别">
+<meta property="article:tag" content="masked image modeling 自监督学习">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/figure_1.png">
+<meta name="twitter:image" content="https://pixelpilot666.github.io/2024/03/05/Stare-at-What-You-See%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/title.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>SVFormer: Semi-supervised Video Transformer for Action Recognition - Pixel Pilot</title>
+  <title>Stare-at-What-You-See阅读笔记 - Pixel Pilot</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -231,7 +227,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="SVFormer: Semi-supervised Video Transformer for Action Recognition"></span>
+            <span id="subtitle" data-typed-text="Stare-at-What-You-See阅读笔记"></span>
           
         </div>
 
@@ -242,8 +238,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-03-03 14:53" pubdate>
-          2024年3月3日 下午
+        <time datetime="2024-03-05 20:28" pubdate>
+          2024年3月5日 晚上
         </time>
       </span>
     
@@ -254,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4k 字
+          2.9k 字
         
       </span>
     
@@ -265,7 +261,7 @@
         
         
         
-          34 分钟
+          24 分钟
         
       </span>
     
@@ -311,238 +307,182 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">SVFormer: Semi-supervised Video Transformer for Action Recognition</h1>
+            <h1 style="display: none">Stare-at-What-You-See阅读笔记</h1>
             
             
               <div class="markdown-body">
                 
                 <h1
-id="svformer-semi-supervised-video-transformer-for-action-recognition-阅读笔记">SVFormer:
-Semi-supervised Video Transformer for Action Recognition 阅读笔记</h1>
-<ul>
-<li>论文地址：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2211.13222">SVFormer:
-Semi-supervised Video Transformer for Action Recognition</a></li>
-</ul>
-<h2 id="亮点">亮点：</h2>
-<ol type="1">
-<li>提出一种新颖的数据增强策略——<strong>Tube
-TokenMix(TTMix)</strong>。通过利用具有在时间轴上一致性的masked
-tokens的mask，将视频段混合。</li>
-<li>提出了一种时间扭曲增强技术——<strong>Temporal Warping
-Augmentation(TWAug)</strong>去掩盖视频中复杂的时间变化。这个技术使得选定的帧拉伸到视频段中不同的时间持续期间。</li>
-<li>这篇论文的结果很好，尤其是在Kinetics-400数据集上比SOTA(<a
-target="_blank" rel="noopener" href="https://arxiv.org/pdf/2112.09690.pdf">CMPL</a>)<strong>涨点31.5%</strong>。</li>
-</ol>
-<h2 id="背景及解决措施">背景及解决措施</h2>
-<p>​
-在互联网上，视频逐渐取代了图片和文字，所以有了很多没有标签的数据。监督学习已经靠着标记数据取得了成功，但是标记数据<strong>太耗费时间和耗费金钱</strong>。为了利用上大规模的无标记数据，所以采用半监督学习做动作识别。</p>
-<p>​
-以前的SSL方法是采用图像增强如Mixup或者CutMix来加速收敛，但是这种方法只适用于图像数据，这种方法用于视频会<strong>使得网络忽视掉视频数据天然具有的时间信息</strong>。所以作者提出了<strong>TTMix</strong>这种适合Video
-Transformer的数据增强方法。</p>
-<p>​
-之前的时间增强方法，只考虑了时间的缩放或移动，<strong>忽视了在人体运动中的各个部分的时间变化</strong>。为了帮助模型学习强时间动态，所以作者提出了<strong>TWAug</strong>。这个方法是对空间增强的补充</p>
-<p>​ TWAug和TTMix结合，实现了<strong>显著的效果提升</strong>。</p>
+id="stare-at-what-you-see-masked-image-modeling-without-reconstruction-阅读笔记">Stare
+at What You See: Masked Image Modeling without Reconstruction
+阅读笔记</h1>
 <figure>
-<img src="figure_1.png" srcset="/img/loading.gif" lazyload alt="figure_1" />
-<figcaption aria-hidden="true">figure_1</figcaption>
+<img src="title.png" srcset="/img/loading.gif" lazyload alt="论文标题" />
+<figcaption aria-hidden="true">论文标题</figcaption>
 </figure>
+<ul>
+<li>论文地址：<a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2211.08887.pdf">2211.08887.pdf
+(arxiv.org)</a></li>
+<li>该论文收录于CVPR2023</li>
+</ul>
+<h2 id="亮点">亮点</h2>
+<ul>
+<li>在<strong>Masked Image
+Modeling(MIM)</strong>中提出<strong>MaskAlign</strong>使得不用在masked
+token上进行任何重建就能实现SOTA效果，同时不用重建意味着减少了大量的计算，使得效率得到了很大的提高。</li>
+<li>提出动态对齐模块<strong>Dynamic Align (DA)
+module</strong>，在增加很少的计算量的条件下，<strong>解决student
+model和teacher model之间输入不一致的问题</strong>。</li>
+</ul>
+<h2 id="简介">简介</h2>
+<p>​ <strong>Masked Image
+Modeling(MIM)</strong>中最近的一些工作，引入了语义丰富的Teacher
+Model（如CLIP）。<strong>通过利用Teacher Model提取的特征，作为Masked
+Image特征重建的target</strong>。在masked
+regions中的重建，暗示着迫使图像编码器学习图像中的<strong>语义相关性</strong>。<strong>重建的过程会带来大量的计算</strong>，增大了预训练的开销。而且强大的teacher
+model提取出的特征包含了丰富的语义相关性。所以作者提出了叫做<strong>MaskAlign</strong>的MIM范式，就是不用重建，只是将由student
+model提取的特征与teacher model提取的特征对齐。</p>
+<p>​ 因此，<strong>MaskAlign使得student model在特征对齐中学到teacher
+model对特征的良好表示，还能在掩码建模（masked
+modeling）的过程中学到完整图像的信息</strong>——因为在完整图像和掩码视图（masked
+view）之间存在特征的一致性，使得student model需要在比teacher
+model少得多的信息中推断整体的语义。</p>
+<p>​ 然而，输入到student model中的信息比到teacher
+model中的信息少的多，这就会导致每个层的特征无法对齐。作者提出了<strong>动态对齐模块（Dynamic
+Align (DA) module）</strong>来增强学生特征（student's
+model）。<strong>DA模块动态的聚合不同级别学生的特征，并于teacher
+model保持一致</strong>。这种方法还能转移到不对称的师生模型结构中。</p>
 <h2 id="详细方法">详细方法</h2>
-<p>模型的训练分成两部分：</p>
-<ol type="1">
-<li><p>对于<strong>有标签数据</strong><span
-class="math inline">\(\{(x_l,y_l)\}^{N_l}_{l=1}\)</span>
-，这个模型优化下面的监督学习loss函数<span
-class="math inline">\(\mathcal{L_s}\)</span> <span
-class="math display">\[
-\mathcal{L_S}=\frac{1}{N_L}\sum^{N_L}{\mathcal{H}(\mathcal{F}(x_l),y_l)}
-\]</span></p>
-<p>其中<span class="math inline">\(x_l,y_l\)</span> 分别指的是第<span
-class="math inline">\(l\)</span> 个视频段和其对应的标签。总共有<span
-class="math inline">\(N_l\)</span> 条标记视频。<span
-class="math inline">\(\mathcal{H}(·)\)</span>
-指的是标准交叉熵损失函数，<span
-class="math inline">\(\mathcal{F}(·)\)</span>
-指的是模型的预测结果。</p></li>
-<li><p>对于<strong>无标签数据</strong><span
-class="math inline">\(x_u\)</span>
-，采用<strong>弱增强</strong>（如随机水平翻转、随机缩放、随机剪裁）和<strong>强增强</strong>（如AutoAugment、Dropout）两种措施生成两种视图<span
-class="math inline">\(x_w = \mathcal{A_{weak}}(x_u),\ x_s =
-\mathcal{A_{strong}}(x_u)\)</span>。对弱增强视图进行推理得到数据的伪标签<span
-class="math inline">\(\hat{y}_m = arg\ max(\mathcal{F}(x_w))\)</span>
-。生成的伪标签通过下面的loss函数用于监督强视图。 <span
-class="math display">\[
-\mathcal{L_{un}} = \frac{1}{N_U}
-\sum^{N_U}\mathbb{I}(max(\mathcal{F}(x_w)) &gt;
-\delta)\mathcal{H}(\mathcal{F}(x_s),\hat{y}_w)
-\]</span> 其中<span class="math inline">\(\delta\)</span>
-是置信阈值，<span class="math inline">\(\mathbb{I}\)</span>
-是指示函数，最大类概率大于<span class="math inline">\(\delta\)</span>
-时取1否则取0。这个指示函数用于<strong>过滤噪声伪标签。</strong></p></li>
-</ol>
-<p>为了避免模型在训练的时候崩溃，作者采用<strong>指数移动平均(EMA)-Teacher模型</strong>在FixMatch中。参数更新公式：
-<span class="math display">\[
-\theta_t \gets m \theta_t + (1-m)\theta_s
-\]</span> 其中<span class="math inline">\(m\)</span>时动量系数。<span
-class="math inline">\(\theta_t,\theta_s\)</span>
-分别是teacher模型的参数和student模型的参数。</p>
-<h3 id="tube-tokenmix">Tube TokenMix</h3>
 <figure>
 <img src="figure_2.png" srcset="/img/loading.gif" lazyload alt="figure_2" />
 <figcaption aria-hidden="true">figure_2</figcaption>
 </figure>
-<h4 id="mixing-in-videos">Mixing in Videos</h4>
-<p>参考上面pipeline（pipeline中省略了数据增强的部分）。<strong>Mixing in
-Videos</strong>指的是<span class="math inline">\(x_a,x_b\)</span>
-经过Tube TokenMix 生成 <span class="math inline">\(x_{mix}\)</span>
-的过程。细节如下：</p>
+<h3 id="模型输入">模型输入</h3>
+<p>​ MaskAlign中包含一个随机初始化的student
+model和一个经过预训练的语义丰富的frozen teacher
+model去提取特征作为监督。<strong>作者采用的是标准ViT作为student
+model，ViT （如 CLIP-ViT, DINO）作为teacher model。</strong></p>
 <ul>
-<li><p>给了两段无标记的视频<span class="math inline">\(x_a,x_b \in
-\mathbb{R}^{H \times W \times T}\)</span></p></li>
-<li><p>利用token级的<span class="math inline">\(M \in \{0,1\}^{H \times
-W \times
-T}\)</span>，进行样本混合。其中H，W是对视频帧进行token化之后的高和宽，T是剪辑长度。这个<span
-class="math inline">\(M\)</span>就是Tube TokenMix生成的蒙版。</p></li>
-<li><p>通过下面的式子混合<span class="math inline">\(x_a,\
-x_b\)</span>。其中<span class="math inline">\(\odot\)</span> 指的是
-element-wise multiplication，对应元素相乘即Hadamard
-Product（学到了高级的表达）<span
-class="math inline">\(\mathbf{1}\)</span> 指的是全为1的矩阵。 <span
-class="math display">\[
-x_{mix} = \mathcal{A_{strong}}(x_a) \odot \mathbf{M} +
-\mathcal{A_{strong}}(x_b) \odot \mathbf{(1-M)}
-\]</span></p></li>
+<li><strong>teacher model的输入</strong>：一幅图像 <span
+class="math inline">\(I \in \mathbb{R}^{C \times H \times W}\)</span>
+被分成 $ N = $ 个patch：<span class="math inline">\(\mathcal{I} =
+\{x_i^p\}_{i=1}^N\)</span> ，<span class="math inline">\(\mathcal{I} \in
+\mathbb{R}^{N\times(P^2C)}\)</span> ，其中patch size为 <span
+class="math inline">\((P, P)\)</span> 。然后把patchs <span
+class="math inline">\(\mathcal{I}\)</span>
+带上位置信息，并线性投影成为tokens，输入到teacher model中。</li>
+<li><strong>student model的输入</strong>：过程与teacher
+model的类似除了要对图像进行mask处理。要丢弃掉 <span
+class="math inline">\(r\%\)</span> 的patch,只喂进去可见的patch：<span
+class="math inline">\(\mathcal{V} = \{x_i^p\}_{i=1}^{N(1-r\%)}\)</span>
+到student model中。</li>
 </ul>
-<p>然后将得到的<span class="math inline">\(x_{mix}\)</span>
-喂入<strong>student model </strong><span
-class="math inline">\(\mathcal{F_s}\)</span> 得到预测标签<span
-class="math inline">\(\hat y_{mix} = \mathcal{F}(x_{mix})\)</span></p>
-<p>先对<span
-class="math inline">\(x_a,\  x_b\)</span>进行弱增强，然后喂到<strong>Teacher
-model</strong>中通过如下过程产生伪标签<span class="math inline">\(\hat
-y_a, \  \hat{y}_b\)</span>: <span class="math display">\[
-\hat{y}_a = arg\ max(\mathcal{F_t}(\mathcal{A_{weak}}(x_a))) \\
-\hat{y}_b = arg\ max(\mathcal{F_t}(\mathcal{A_{weak}}(x_b)))
-\]</span> <strong>注意</strong>如果 $max(((x))) &lt; $ 则<span
-class="math inline">\(\hat y\)</span> 就是<span
-class="math inline">\(\mathcal{F_t}(\mathcal{A_{weak}}(x))\)</span>
-(这里对应了pipeline中的虚线。)</p>
-<p><span
-class="math inline">\(x_{mix}\)</span>的伪标签通过下面的方程生成 <span
-class="math display">\[
-\hat{y}_{mix} = \lambda·\hat{y}_a + (1-\lambda)·\hat{y}_b
-\]</span> 这个方程是参考Mixup方法提出的。</p>
-<p>首先常用于生成<strong>带有高质量伪标签的数据</strong>的数据增强方法是Mixup。通过<strong>对样本-标签对进行如下的凸组合</strong>的方式生成新的数据。
-<span class="math display">\[
-\hat{x} = \lambda·x_1 + (1-\lambda)·x_2, \\
-\hat{y} = \lambda·y_1 + (1-\lambda)·y_2,
-\]</span> 其中 <span class="math inline">\(\lambda\)</span> 符合<span
-class="math inline">\(\beta\)</span>分布。</p>
-<figure>
-<img src="figure_3.png" srcset="/img/loading.gif" lazyload alt="figure_3" />
-<figcaption aria-hidden="true">figure_3</figcaption>
-</figure>
-<figure>
-<img src="figure_6.png" srcset="/img/loading.gif" lazyload alt="figure_6" />
-<figcaption aria-hidden="true">figure_6</figcaption>
-</figure>
-<p>这里为了可视化，所以在图像级展示了各种混合方法的效果。</p>
+<h3 id="掩蔽策略">掩蔽策略</h3>
+<p>​ <strong>掩蔽策略（Masking Strategy）</strong>也就是从完整图像patch
+<span class="math inline">\(\mathcal{I}\)</span> 中形成mask view <span
+class="math inline">\(\mathcal{V}\)</span> 的策略，主要分为两种：</p>
 <ul>
-<li>Mixup是两幅图像像素加权融合。</li>
-<li>CutMix是随机剪切图像块状融合。</li>
-<li>PixMix是像素级的融合，像素值不是选a的帧就是选b的帧。</li>
-<li>FrameTokenMix是在时间轴上，从视频段a中选择帧替换掉视频段b中对应时间的帧从而形成新的视频段。</li>
-<li>RandTokenMix是在每个a，b对应的帧上，使用PixMix，然后在生成新的视频段上的不同帧的过程中用的mask每次都不同。</li>
-<li>TubeTokenMix跟RandTokenMix的区别就是，不同时间上的帧融合用的mask相同。</li>
+<li><strong>随机掩蔽</strong>：将部分patch以均匀分布的形式在 <span
+class="math inline">\(\mathcal{I}\)</span> 进行采样形成 <span
+class="math inline">\(\mathcal{V}\)</span>。</li>
+<li><strong>注意掩蔽（Attentive masking）</strong>：在teacher
+model的引导下，形成将那些大概率是重要的区域遮盖住的图像的<span
+class="math inline">\(\mathcal{V}\)</span> 。</li>
 </ul>
-<p>最后student model通过下面的一致性损失函数进行优化： <span
+<p>​ 这两中策略的对比，在后面实验部分有提到。</p>
+<h3 id="动态对齐">动态对齐</h3>
+<p>​ 因为student model和teacher
+model的<strong>输入不一致</strong>（因为student model只输入了 <span
+class="math inline">\(N(1-r\%)\)</span> 个token而teacher model输入了
+<span class="math inline">\(N\)</span> 个token），所以student
+model和teacher model的每一层输出都会出现对不齐的情况。</p>
+<p>​ 为解决上述问题，作者提出了<strong>动态对齐模块（Dynamic Alignment
+（DA）module）</strong>。Transformer由一系列的block组成，在student
+model的每个块后面加上了一个适配器 <span
+class="math inline">\(A_i\)</span> 将每个块的输出 <span
+class="math inline">\(x_i\)</span> 投影到teacher
+model的特征空间。这个适配器是一个轻型模型如2层MLP。</p>
+<p>​
+作者为了<strong>动态地聚合不同级的学生特征，并与多级教师特征对齐</strong>，使用了一个动态对齐矩阵——
+<span class="math inline">\(W\)</span> , <span
+class="math inline">\(W\)</span> 是一个 <span class="math inline">\(S
+\times T\)</span> 的矩阵，带有项 <span
+class="math inline">\(w_{ij}\)</span> 。其中 <span
+class="math inline">\(S,\ T\)</span> 分别是student
+model中的block的数量和teacher
+model中的block的数量。DA模块的计算如下所示： <span
 class="math display">\[
-\mathcal{L}_{mix} = \frac{1}{N_m}\sum^{N_m}(\hat{y}_{mix} - y_{mix})^2
-\]</span> 其中<span class="math inline">\(N_m\)</span> 是混合样本<span
-class="math inline">\(x_{mix}\)</span>的数目。</p>
-<p>对于<strong>TTMix的一致性损失算法</strong>如下：</p>
-<figure>
-<img src="Algorithm_1.png" srcset="/img/loading.gif" lazyload alt="Algorithm_1" />
-<figcaption aria-hidden="true">Algorithm_1</figcaption>
-</figure>
-<h4 id="temporal-warping-augmentationtwaug">Temporal Warping
-Augmentation(TWAug)</h4>
-<p>这部分的作用是，能够把一帧拉伸到不同的时间长度，这样做是为了给数据引入更多的随机性。</p>
-<figure>
-<img src="figure_5.png" srcset="/img/loading.gif" lazyload alt="figure_5" />
-<figcaption aria-hidden="true">figure_5</figcaption>
-</figure>
-<p>给定一个T帧的视频如上图，随机决定是保存全部的帧，或者保存小部分帧。对于保存部分帧的情况，会随机填充邻近的可见帧。作者说<strong>TWAug可以帮助模型在训练过程中学习灵活的时间动态</strong>。</p>
-<figure>
-<img src="figure_4.png" srcset="/img/loading.gif" lazyload alt="figure_4" />
-<figcaption aria-hidden="true">figure_4</figcaption>
-</figure>
-<p>如上图所示，作者采用了常规增强（对Clip<span
-class="math inline">\(x_a\)</span> 的处理）和TWAug（对Clip<span
-class="math inline">\(x_b\)</span>
-的处理）两种方式分别处理两个输入，然后再经过TTMix进行混合。</p>
-<h3 id="训练过程">训练过程</h3>
-<p>训练分为三部分：</p>
-<ol type="1">
-<li><p>监督学习 <span class="math display">\[
-\mathcal{L_S}=\frac{1}{N_L}\sum^{N_L}{\mathcal{H}(\mathcal{F}(x_l),y_l)}
-\]</span></p></li>
-<li><p>无监督伪标签一致性损失 <span class="math display">\[
-\mathcal{L_{un}} = \frac{1}{N_U}
-\sum^{N_U}\mathbb{I}(max(\mathcal{F}(x_w)) &gt;
-\delta)\mathcal{H}(\mathcal{F}(x_s),\hat{y}_w)
-\]</span></p></li>
-<li><p>TTMix一致性损失 <span class="math display">\[
-\mathcal{L}_{mix} = \frac{1}{N_m}\sum^{N_m}(\hat{y}_{mix} - y_{mix})^2
-\]</span></p></li>
-</ol>
-<p>最后损失函数如下： <span class="math display">\[
-\mathcal{L_{all}} = \mathcal{L_s} +
-\gamma_1\mathcal{L_{un}}+\gamma_2\mathcal{L_{mix}}
-\]</span> 其中<span class="math inline">\(\gamma_1,\ \gamma_2\)</span>
-是用于平衡损失的超参数。</p>
+\hat{y} = \{\sum_{i=0}^Sw_{ij}A_i(x_i)\}_{j=0}^T
+\]</span> 这样就得到了student model<strong>多级特征的一组线性组合 <span
+class="math inline">\(\hat{y}\)</span>
+</strong>。<strong>预训练阶段，梯度可以反向传播到动态对齐矩阵 <span
+class="math inline">\(W\)</span>
+。在下游任务中，会弃用整个DA模块</strong>。</p>
+<p>​ 作者还对比了没有动态对齐矩阵的情况叫做<strong>逐层对齐（layer-wise
+alignment）</strong>。在实验中显示这有没有动态对齐矩阵，<strong>对计算效率几乎没有影响</strong>。</p>
+<h3 id="损失函数">损失函数</h3>
+<p>​ <strong>为了抑制教师特征的数量级</strong>，在生成对齐target <span
+class="math inline">\(\tilde{y}\)</span> 的时候，先对第 <span
+class="math inline">\(i\)</span> 层的特征 <span
+class="math inline">\(y_i\)</span> 归一化处理，得到 <span
+class="math inline">\(\tilde{y}\)</span> 的过程如下： <span
+class="math display">\[
+\tilde{y} = \{ \mathrm{Normalize}(y_i)\}_{j=0}^T
+\]</span></p>
+<p>​ 最后在学生特征和教师特征之间用了<strong>平滑L1 loss</strong>： <span
+class="math display">\[
+\mathcal{L}_{Align}(\hat{y}, \tilde{y}) =
+\begin{cases}
+\frac{1}{2}(\hat{y} - \tilde{y})^2, \quad |\hat{y} - \tilde{y}| \le 1\\
+(|\hat{y} - \tilde{y}| - \frac{1}{2}), \quad otherwise
+\end{cases}
+\]</span></p>
 <h2 id="实验结果">实验结果</h2>
 <ul>
-<li><p>Baseline是TimeSformer</p></li>
-<li><p>8或16个GPU（具体型号没找到）</p></li>
-<li><p>数据集</p>
-<ul>
-<li>Kinetics-400</li>
-<li>UCF-101</li>
-</ul></li>
+<li>实验参数见原文4.1</li>
 </ul>
-<h3 id="与sota方法比较">与SOTA方法比较</h3>
+<h3 id="与sota对比">与SOTA对比</h3>
+<h4 id="图像分类结果">图像分类结果</h4>
 <figure>
 <img src="table_1.png" srcset="/img/loading.gif" lazyload alt="table_1" />
 <figcaption aria-hidden="true">table_1</figcaption>
 </figure>
+<h4 id="目标检测和实例分割结果">目标检测和实例分割结果</h4>
 <figure>
 <img src="table_2.png" srcset="/img/loading.gif" lazyload alt="table_2" />
 <figcaption aria-hidden="true">table_2</figcaption>
 </figure>
-<h3 id="ssl-框架选择">SSL 框架选择</h3>
+<h3 id="消融实验">消融实验</h3>
+<h4 id="对齐策略">对齐策略</h4>
 <figure>
 <img src="table_3.png" srcset="/img/loading.gif" lazyload alt="table_3" />
 <figcaption aria-hidden="true">table_3</figcaption>
 </figure>
-<h3 id="tokenmix-效果比较">TokenMix 效果比较</h3>
+<h4 id="掩蔽策略-1">掩蔽策略</h4>
 <figure>
 <img src="table_4.png" srcset="/img/loading.gif" lazyload alt="table_4" />
 <figcaption aria-hidden="true">table_4</figcaption>
 </figure>
-<h3 id="时间空间变换增强有效性效果">时间、空间变换增强有效性效果</h3>
+<h4 id="teacher-model">Teacher Model</h4>
 <figure>
 <img src="table_5.png" srcset="/img/loading.gif" lazyload alt="table_5" />
 <figcaption aria-hidden="true">table_5</figcaption>
 </figure>
-<h3 id="不同推理方案的有效性效果">不同推理方案的有效性效果</h3>
+<h4 id="适配器细节">适配器细节</h4>
 <figure>
 <img src="table_6.png" srcset="/img/loading.gif" lazyload alt="table_6" />
 <figcaption aria-hidden="true">table_6</figcaption>
 </figure>
-<h3 id="超参数对结果的影响">超参数对结果的影响</h3>
+<h4 id="预训练速度">预训练速度</h4>
 <figure>
-<img src="figure_7.png" srcset="/img/loading.gif" lazyload alt="figure_7" />
-<figcaption aria-hidden="true">figure_7</figcaption>
+<img src="table_7.png" srcset="/img/loading.gif" lazyload alt="table_7" />
+<figcaption aria-hidden="true">table_7</figcaption>
+</figure>
+<h4 id="自注意力权重可视化">自注意力权重可视化</h4>
+<figure>
+<img src="figure_3.png" srcset="/img/loading.gif" lazyload alt="figure_3" />
+<figcaption aria-hidden="true">figure_3</figcaption>
 </figure>
 
                 
@@ -552,32 +492,11 @@ class="math inline">\(x_b\)</span>
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E8%AE%BA%E6%96%87%E7%B2%97%E8%AF%BB/" class="category-chain-item">论文粗读</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB/">#动作识别</a>
+        <a href="/tags/masked-image-modeling-%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/">#masked image modeling 自监督学习</a>
       
     </div>
   
@@ -589,8 +508,8 @@ class="math inline">\(x_b\)</span>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>SVFormer: Semi-supervised Video Transformer for Action Recognition</div>
-      <div>https://pixelpilot666.github.io/2024/03/03/SVFormer/</div>
+      <div>Stare-at-What-You-See阅读笔记</div>
+      <div>https://pixelpilot666.github.io/2024/03/05/Stare-at-What-You-See阅读笔记/</div>
     </div>
     <div class="license-meta">
       
@@ -602,7 +521,7 @@ class="math inline">\(x_b\)</span>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年3月3日</div>
+          <div>2024年3月5日</div>
         </div>
       
       
@@ -634,18 +553,12 @@ class="math inline">\(x_b\)</span>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/03/05/Stare-at-What-You-See%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" title="Stare-at-What-You-See阅读笔记">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Stare-at-What-You-See阅读笔记</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/" title="Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation精读笔记">
-                        <span class="hidden-mobile">Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation精读笔记</span>
+                      <a href="/2024/03/03/SVFormer/" title="SVFormer: Semi-supervised Video Transformer for Action Recognition">
+                        <span class="hidden-mobile">SVFormer: Semi-supervised Video Transformer for Action Recognition</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
