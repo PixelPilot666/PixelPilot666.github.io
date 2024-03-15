@@ -16,39 +16,28 @@
   <meta name="author" content="PixelPilot">
   <meta name="keywords" content="">
   
-    <meta name="description" content="SVFormer: Semi-supervised Video Transformer for Action Recognition 阅读笔记  论文地址：SVFormer: Semi-supervised Video Transformer for Action Recognition  亮点：  提出一种新颖的数据增强策略——Tube TokenMix(TTMix)。通过利用">
+    <meta name="description" content="title  SimpleNet: A Simple Network for Image Anomaly Detection and Localization 阅读笔记  论文地址[2303.15140] SimpleNet: A Simple Network for Image Anomaly Detection and Localization (arxiv.org)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SVFormer: Semi-supervised Video Transformer for Action Recognition">
-<meta property="og:url" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/index.html">
+<meta property="og:title" content="SimpleNet-阅读笔记">
+<meta property="og:url" content="https://pixelpilot666.github.io/2024/03/15/SimpleNet-%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Pixel Pilot">
-<meta property="og:description" content="SVFormer: Semi-supervised Video Transformer for Action Recognition 阅读笔记  论文地址：SVFormer: Semi-supervised Video Transformer for Action Recognition  亮点：  提出一种新颖的数据增强策略——Tube TokenMix(TTMix)。通过利用">
+<meta property="og:description" content="title  SimpleNet: A Simple Network for Image Anomaly Detection and Localization 阅读笔记  论文地址[2303.15140] SimpleNet: A Simple Network for Image Anomaly Detection and Localization (arxiv.org)">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/figure_1.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/figure_2.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/figure_3.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/figure_6.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/Algorithm_1.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/figure_5.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/figure_4.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/table_1.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/table_2.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/table_3.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/table_4.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/table_5.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/table_6.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/figure_7.png">
-<meta property="article:published_time" content="2024-03-03T06:53:05.000Z">
-<meta property="article:modified_time" content="2024-03-04T10:42:16.547Z">
+<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/15/SimpleNet-%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/title.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/15/SimpleNet-%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/figure_3.png">
+<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/15/SimpleNet-%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/figure_4.png">
+<meta property="article:published_time" content="2024-03-15T02:12:19.000Z">
+<meta property="article:modified_time" content="2024-03-15T06:57:28.686Z">
 <meta property="article:author" content="PixelPilot">
-<meta property="article:tag" content="动作识别">
+<meta property="article:tag" content="anomaly detection and localization">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://pixelpilot666.github.io/2024/03/03/SVFormer/figure_1.png">
+<meta name="twitter:image" content="https://pixelpilot666.github.io/2024/03/15/SimpleNet-%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/title.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>SVFormer: Semi-supervised Video Transformer for Action Recognition - Pixel Pilot</title>
+  <title>SimpleNet-阅读笔记 - Pixel Pilot</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -231,7 +220,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="SVFormer: Semi-supervised Video Transformer for Action Recognition"></span>
+            <span id="subtitle" data-typed-text="SimpleNet-阅读笔记"></span>
           
         </div>
 
@@ -242,8 +231,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-03-03 14:53" pubdate>
-          2024年3月3日 下午
+        <time datetime="2024-03-15 10:12" pubdate>
+          2024年3月15日 上午
         </time>
       </span>
     
@@ -254,7 +243,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4k 字
+          1.5k 字
         
       </span>
     
@@ -265,7 +254,7 @@
         
         
         
-          34 分钟
+          13 分钟
         
       </span>
     
@@ -311,239 +300,88 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">SVFormer: Semi-supervised Video Transformer for Action Recognition</h1>
+            <h1 style="display: none">SimpleNet-阅读笔记</h1>
             
             
               <div class="markdown-body">
                 
-                <h1
-id="svformer-semi-supervised-video-transformer-for-action-recognition-阅读笔记">SVFormer:
-Semi-supervised Video Transformer for Action Recognition 阅读笔记</h1>
-<ul>
-<li>论文地址：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2211.13222">SVFormer:
-Semi-supervised Video Transformer for Action Recognition</a></li>
-</ul>
-<h2 id="亮点">亮点：</h2>
-<ol type="1">
-<li>提出一种新颖的数据增强策略——<strong>Tube
-TokenMix(TTMix)</strong>。通过利用具有在时间轴上一致性的masked
-tokens的mask，将视频段混合。</li>
-<li>提出了一种时间扭曲增强技术——<strong>Temporal Warping
-Augmentation(TWAug)</strong>去掩盖视频中复杂的时间变化。这个技术使得选定的帧拉伸到视频段中不同的时间持续期间。</li>
-<li>这篇论文的结果很好，尤其是在Kinetics-400数据集上比SOTA(<a
-target="_blank" rel="noopener" href="https://arxiv.org/pdf/2112.09690.pdf">CMPL</a>)<strong>涨点31.5%</strong>。</li>
-</ol>
-<h2 id="背景及解决措施">背景及解决措施</h2>
-<p>​
-在互联网上，视频逐渐取代了图片和文字，所以有了很多没有标签的数据。监督学习已经靠着标记数据取得了成功，但是标记数据<strong>太耗费时间和耗费金钱</strong>。为了利用上大规模的无标记数据，所以采用半监督学习做动作识别。</p>
-<p>​
-以前的SSL方法是采用图像增强如Mixup或者CutMix来加速收敛，但是这种方法只适用于图像数据，这种方法用于视频会<strong>使得网络忽视掉视频数据天然具有的时间信息</strong>。所以作者提出了<strong>TTMix</strong>这种适合Video
-Transformer的数据增强方法。</p>
-<p>​
-之前的时间增强方法，只考虑了时间的缩放或移动，<strong>忽视了在人体运动中的各个部分的时间变化</strong>。为了帮助模型学习强时间动态，所以作者提出了<strong>TWAug</strong>。这个方法是对空间增强的补充</p>
-<p>​ TWAug和TTMix结合，实现了<strong>显著的效果提升</strong>。</p>
-<figure>
-<img src="figure_1.png" srcset="/img/loading.gif" lazyload alt="figure_1" />
-<figcaption aria-hidden="true">figure_1</figcaption>
+                <figure>
+<img src="title.png" srcset="/img/loading.gif" lazyload alt="title" />
+<figcaption aria-hidden="true">title</figcaption>
 </figure>
+<h1
+id="simplenet-a-simple-network-for-image-anomaly-detection-and-localization-阅读笔记">SimpleNet:
+A Simple Network for Image Anomaly Detection and Localization
+阅读笔记</h1>
+<ul>
+<li>论文地址[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2303.15140">2303.15140]
+SimpleNet: A Simple Network for Image Anomaly Detection and Localization
+(arxiv.org)</a></li>
+</ul>
+<h2 id="亮点更准更快">亮点（更准、更快）</h2>
+<ol type="1">
+<li><p>异常检测实现了99.6% 的AUROC</p></li>
+<li><p>在单张3080ti上能实现77FPS</p></li>
+</ol>
+<h2 id="背景">背景</h2>
+<ul>
+<li><p><strong>基于重建的方法</strong>
+：认为异常不应该能被很好的重建出来，问题在于当异常与正常部分是同样的组成模式，那么异常部分还是可能会被重建出来的。</p></li>
+<li><p><strong>基于合成的方法</strong>：主要是利用简单的数据增强的方法制作异常部分并随机的粘贴到正常数据上，这样做的缺点是，制作的异常与真实的异常并不相似。</p></li>
+<li><p><strong>基于嵌入的方法</strong>：在特征空间上，异常的特征与正常的特征不在同一分布上，先用预训练模型学习正常的分布。之后通过特征提取的方法找出在正常分布之外的异常。这样的缺点在于，预训练模型是根据ImageNet数据集训练的，ImageNet中的数据与真实的工业图像之间有很大的差距，导致学习到的正常分布与工业图像的正常分布并不相同。</p></li>
+</ul>
 <h2 id="详细方法">详细方法</h2>
-<p>模型的训练分成两部分：</p>
-<ol type="1">
-<li><p>对于<strong>有标签数据</strong><span
-class="math inline">\(\{(x_l,y_l)\}^{N_l}_{l=1}\)</span>
-，这个模型优化下面的监督学习loss函数<span
-class="math inline">\(\mathcal{L_s}\)</span> <span
-class="math display">\[
-\mathcal{L_S}=\frac{1}{N_L}\sum^{N_L}{\mathcal{H}(\mathcal{F}(x_l),y_l)}
+<figure>
+<img src="figure_3.png" srcset="/img/loading.gif" lazyload alt="图3" />
+<figcaption aria-hidden="true">图3</figcaption>
+</figure>
+<p>SimpleNet由一个特征提取器、一个特征适配器、一个异常特征生成器和一个判别器组成。其中特征生成器只在训练过程使用。</p>
+<h3 id="特征提取器">特征提取器</h3>
+<p>训练集 <span class="math inline">\(\mathcal{X_{train}}\)</span>
+，测试集 <span class="math inline">\(\mathcal{X_{text}}\)</span>
+，对于在 <span class="math inline">\(\mathcal{X_{train} \bigcup
+\mathcal{X_{test}}}\)</span> 中的任一图像 <span
+class="math inline">\(x_i \in \mathbb{R}^{H \times W \times 3}\)</span>
+。由<strong>ResNet</strong>作为骨架的并经过预训练的特征提取网络 <span
+class="math inline">\(\phi\)</span> 来进行特征提取。</p>
+<h3 id="特征适配器">特征适配器</h3>
+<p>因为工业图像通常与用于预训练的数据集中的图像有很大的不同，所以需要特征适配器
+<span class="math inline">\(G_{\theta}\)</span>
+将训练获得的特征转移到所需要的域。</p>
+<p>这里的特征适配器可以由简单网络构成，如全连接层或者多层感知机（MLP）。作者经实验发现，单个全连接层也能产生很好的效果。</p>
+<h3 id="异常特征生成器">异常特征生成器</h3>
+<p>利用通过在正常特征里添加高斯噪声的方法形成异常特征。这种做法比直接合成缺陷图像要更有效。</p>
+<figure>
+<img src="figure_4.png" srcset="/img/loading.gif" lazyload alt="图4" />
+<figcaption aria-hidden="true">图4</figcaption>
+</figure>
+<h3 id="判别器">判别器</h3>
+<p>判别器是用来估计每个位置的特征是否正常，如果是正常特征则输出为正，否则输出为负。这里作者简单的利用了2层的MLP实现的。</p>
+<h3 id="损失函数和训练过程">损失函数和训练过程</h3>
+<p>损失函数是截断的 <span class="math inline">\(l1\)</span> 损失函数
+<span class="math display">\[
+l_{h,w}^i = max(0, th^+ - D_{\psi}(q_{h,w}^i)\ +\ max(0, th^- +
+D_{\psi}(q_{h,w}^{i-}))
+\]</span> 其中 <span class="math inline">\(th^+, th^-\)</span>
+是防止过拟合的截断项，默认设为0.5和-0.5，<span
+class="math inline">\(D_{\psi}(·)\)</span> 是判别器，<span
+class="math inline">\(q_{h,w}^i, q_{h,w}^{i-}\)</span>
+分别是正常特征和异常特征。</p>
+<p>训练目标： <span class="math display">\[
+\mathcal{L} = \min_{\theta, \psi} \sum_{x^i \in \mathcal{X_{train}}}
+\sum_{h,w} \frac{l_{h,w}^i}{H_0*W_0}
 \]</span></p>
-<p>其中<span class="math inline">\(x_l,y_l\)</span> 分别指的是第<span
-class="math inline">\(l\)</span> 个视频段和其对应的标签。总共有<span
-class="math inline">\(N_l\)</span> 条标记视频。<span
-class="math inline">\(\mathcal{H}(·)\)</span>
-指的是标准交叉熵损失函数，<span
-class="math inline">\(\mathcal{F}(·)\)</span>
-指的是模型的预测结果。</p></li>
-<li><p>对于<strong>无标签数据</strong><span
-class="math inline">\(x_u\)</span>
-，采用<strong>弱增强</strong>（如随机水平翻转、随机缩放、随机剪裁）和<strong>强增强</strong>（如AutoAugment、Dropout）两种措施生成两种视图<span
-class="math inline">\(x_w = \mathcal{A_{weak}}(x_u),\ x_s =
-\mathcal{A_{strong}}(x_u)\)</span>。对弱增强视图进行推理得到数据的伪标签<span
-class="math inline">\(\hat{y}_m = arg\ max(\mathcal{F}(x_w))\)</span>
-。生成的伪标签通过下面的loss函数用于监督强视图。 <span
-class="math display">\[
-\mathcal{L_{un}} = \frac{1}{N_U}
-\sum^{N_U}\mathbb{I}(max(\mathcal{F}(x_w)) &gt;
-\delta)\mathcal{H}(\mathcal{F}(x_s),\hat{y}_w)
-\]</span> 其中<span class="math inline">\(\delta\)</span>
-是置信阈值，<span class="math inline">\(\mathbb{I}\)</span>
-是指示函数，最大类概率大于<span class="math inline">\(\delta\)</span>
-时取1否则取0。这个指示函数用于<strong>过滤噪声伪标签。</strong></p></li>
-</ol>
-<p>为了避免模型在训练的时候崩溃，作者采用<strong>指数移动平均(EMA)-Teacher模型</strong>在FixMatch中。参数更新公式：
-<span class="math display">\[
-\theta_t \gets m \theta_t + (1-m)\theta_s
-\]</span> 其中<span class="math inline">\(m\)</span>时动量系数。<span
-class="math inline">\(\theta_t,\theta_s\)</span>
-分别是teacher模型的参数和student模型的参数。</p>
-<h3 id="tube-tokenmix">Tube TokenMix</h3>
-<figure>
-<img src="figure_2.png" srcset="/img/loading.gif" lazyload alt="figure_2" />
-<figcaption aria-hidden="true">figure_2</figcaption>
-</figure>
-<h4 id="mixing-in-videos">Mixing in Videos</h4>
-<p>参考上面pipeline（pipeline中省略了数据增强的部分）。<strong>Mixing in
-Videos</strong>指的是<span class="math inline">\(x_a,x_b\)</span>
-经过Tube TokenMix 生成 <span class="math inline">\(x_{mix}\)</span>
-的过程。细节如下：</p>
-<ul>
-<li><p>给了两段无标记的视频<span class="math inline">\(x_a,x_b \in
-\mathbb{R}^{H \times W \times T}\)</span></p></li>
-<li><p>利用token级的<span class="math inline">\(M \in \{0,1\}^{H \times
-W \times
-T}\)</span>，进行样本混合。其中H，W是对视频帧进行token化之后的高和宽，T是剪辑长度。这个<span
-class="math inline">\(M\)</span>就是Tube TokenMix生成的蒙版。</p></li>
-<li><p>通过下面的式子混合<span class="math inline">\(x_a,\
-x_b\)</span>。其中<span class="math inline">\(\odot\)</span> 指的是
-element-wise multiplication，对应元素相乘即Hadamard
-Product（学到了高级的表达）<span
-class="math inline">\(\mathbf{1}\)</span> 指的是全为1的矩阵。 <span
-class="math display">\[
-x_{mix} = \mathcal{A_{strong}}(x_a) \odot \mathbf{M} +
-\mathcal{A_{strong}}(x_b) \odot \mathbf{(1-M)}
-\]</span></p></li>
-</ul>
-<p>然后将得到的<span class="math inline">\(x_{mix}\)</span>
-喂入<strong>student model </strong><span
-class="math inline">\(\mathcal{F_s}\)</span> 得到预测标签<span
-class="math inline">\(\hat y_{mix} = \mathcal{F}(x_{mix})\)</span></p>
-<p>先对<span
-class="math inline">\(x_a,\  x_b\)</span>进行弱增强，然后喂到<strong>Teacher
-model</strong>中通过如下过程产生伪标签<span class="math inline">\(\hat
-y_a, \  \hat{y}_b\)</span>: <span class="math display">\[
-\hat{y}_a = arg\ max(\mathcal{F_t}(\mathcal{A_{weak}}(x_a))) \\
-\hat{y}_b = arg\ max(\mathcal{F_t}(\mathcal{A_{weak}}(x_b)))
-\]</span> <strong>注意</strong>如果 $max(((x))) &lt; $ 则<span
-class="math inline">\(\hat y\)</span> 就是<span
-class="math inline">\(\mathcal{F_t}(\mathcal{A_{weak}}(x))\)</span>
-(这里对应了pipeline中的虚线。)</p>
-<p><span
-class="math inline">\(x_{mix}\)</span>的伪标签通过下面的方程生成 <span
-class="math display">\[
-\hat{y}_{mix} = \lambda·\hat{y}_a + (1-\lambda)·\hat{y}_b
-\]</span> 这个方程是参考Mixup方法提出的。</p>
-<p>首先常用于生成<strong>带有高质量伪标签的数据</strong>的数据增强方法是Mixup。通过<strong>对样本-标签对进行如下的凸组合</strong>的方式生成新的数据。
-<span class="math display">\[
-\hat{x} = \lambda·x_1 + (1-\lambda)·x_2, \\
-\hat{y} = \lambda·y_1 + (1-\lambda)·y_2,
-\]</span> 其中 <span class="math inline">\(\lambda\)</span> 符合<span
-class="math inline">\(\beta\)</span>分布。</p>
-<figure>
-<img src="figure_3.png" srcset="/img/loading.gif" lazyload alt="figure_3" />
-<figcaption aria-hidden="true">figure_3</figcaption>
-</figure>
-<figure>
-<img src="figure_6.png" srcset="/img/loading.gif" lazyload alt="figure_6" />
-<figcaption aria-hidden="true">figure_6</figcaption>
-</figure>
-<p>这里为了可视化，所以在图像级展示了各种混合方法的效果。</p>
-<ul>
-<li>Mixup是两幅图像像素加权融合。</li>
-<li>CutMix是随机剪切图像块状融合。</li>
-<li>PixMix是像素级的融合，像素值不是选a的帧就是选b的帧。</li>
-<li>FrameTokenMix是在时间轴上，从视频段a中选择帧替换掉视频段b中对应时间的帧从而形成新的视频段。</li>
-<li>RandTokenMix是在每个a，b对应的帧上，使用PixMix，然后在生成新的视频段上的不同帧的过程中用的mask每次都不同。</li>
-<li>TubeTokenMix跟RandTokenMix的区别就是，不同时间上的帧融合用的mask相同。</li>
-</ul>
-<p>最后student model通过下面的一致性损失函数进行优化： <span
-class="math display">\[
-\mathcal{L}_{mix} = \frac{1}{N_m}\sum^{N_m}(\hat{y}_{mix} - y_{mix})^2
-\]</span> 其中<span class="math inline">\(N_m\)</span> 是混合样本<span
-class="math inline">\(x_{mix}\)</span>的数目。</p>
-<p>对于<strong>TTMix的一致性损失算法</strong>如下：</p>
-<figure>
-<img src="Algorithm_1.png" srcset="/img/loading.gif" lazyload alt="Algorithm_1" />
-<figcaption aria-hidden="true">Algorithm_1</figcaption>
-</figure>
-<h4 id="temporal-warping-augmentationtwaug">Temporal Warping
-Augmentation(TWAug)</h4>
-<p>这部分的作用是，能够把一帧拉伸到不同的时间长度，这样做是为了给数据引入更多的随机性。</p>
-<figure>
-<img src="figure_5.png" srcset="/img/loading.gif" lazyload alt="figure_5" />
-<figcaption aria-hidden="true">figure_5</figcaption>
-</figure>
-<p>给定一个T帧的视频如上图，随机决定是保存全部的帧，或者保存小部分帧。对于保存部分帧的情况，会随机填充邻近的可见帧。作者说<strong>TWAug可以帮助模型在训练过程中学习灵活的时间动态</strong>。</p>
-<figure>
-<img src="figure_4.png" srcset="/img/loading.gif" lazyload alt="figure_4" />
-<figcaption aria-hidden="true">figure_4</figcaption>
-</figure>
-<p>如上图所示，作者采用了常规增强（对Clip<span
-class="math inline">\(x_a\)</span> 的处理）和TWAug（对Clip<span
-class="math inline">\(x_b\)</span>
-的处理）两种方式分别处理两个输入，然后再经过TTMix进行混合。</p>
-<h3 id="训练过程">训练过程</h3>
-<p>训练分为三部分：</p>
-<ol type="1">
-<li><p>监督学习 <span class="math display">\[
-\mathcal{L_S}=\frac{1}{N_L}\sum^{N_L}{\mathcal{H}(\mathcal{F}(x_l),y_l)}
-\]</span></p></li>
-<li><p>无监督伪标签一致性损失 <span class="math display">\[
-\mathcal{L_{un}} = \frac{1}{N_U}
-\sum^{N_U}\mathbb{I}(max(\mathcal{F}(x_w)) &gt;
-\delta)\mathcal{H}(\mathcal{F}(x_s),\hat{y}_w)
-\]</span></p></li>
-<li><p>TTMix一致性损失 <span class="math display">\[
-\mathcal{L}_{mix} = \frac{1}{N_m}\sum^{N_m}(\hat{y}_{mix} - y_{mix})^2
-\]</span></p></li>
-</ol>
-<p>最后损失函数如下： <span class="math display">\[
-\mathcal{L_{all}} = \mathcal{L_s} +
-\gamma_1\mathcal{L_{un}}+\gamma_2\mathcal{L_{mix}}
-\]</span> 其中<span class="math inline">\(\gamma_1,\ \gamma_2\)</span>
-是用于平衡损失的超参数。</p>
-<h2 id="实验结果">实验结果</h2>
-<ul>
-<li><p>Baseline是TimeSformer</p></li>
-<li><p>8或16个GPU（具体型号没找到）</p></li>
-<li><p>数据集</p>
-<ul>
-<li>Kinetics-400</li>
-<li>UCF-101</li>
-</ul></li>
-</ul>
-<h3 id="与sota方法比较">与SOTA方法比较</h3>
-<figure>
-<img src="table_1.png" srcset="/img/loading.gif" lazyload alt="table_1" />
-<figcaption aria-hidden="true">table_1</figcaption>
-</figure>
-<figure>
-<img src="table_2.png" srcset="/img/loading.gif" lazyload alt="table_2" />
-<figcaption aria-hidden="true">table_2</figcaption>
-</figure>
-<h3 id="ssl-框架选择">SSL 框架选择</h3>
-<figure>
-<img src="table_3.png" srcset="/img/loading.gif" lazyload alt="table_3" />
-<figcaption aria-hidden="true">table_3</figcaption>
-</figure>
-<h3 id="tokenmix-效果比较">TokenMix 效果比较</h3>
-<figure>
-<img src="table_4.png" srcset="/img/loading.gif" lazyload alt="table_4" />
-<figcaption aria-hidden="true">table_4</figcaption>
-</figure>
-<h3 id="时间空间变换增强有效性效果">时间、空间变换增强有效性效果</h3>
-<figure>
-<img src="table_5.png" srcset="/img/loading.gif" lazyload alt="table_5" />
-<figcaption aria-hidden="true">table_5</figcaption>
-</figure>
-<h3 id="不同推理方案的有效性效果">不同推理方案的有效性效果</h3>
-<figure>
-<img src="table_6.png" srcset="/img/loading.gif" lazyload alt="table_6" />
-<figcaption aria-hidden="true">table_6</figcaption>
-</figure>
-<h3 id="超参数对结果的影响">超参数对结果的影响</h3>
-<figure>
-<img src="figure_7.png" srcset="/img/loading.gif" lazyload alt="figure_7" />
-<figcaption aria-hidden="true">figure_7</figcaption>
-</figure>
+<h3 id="评分函数">评分函数</h3>
+<p><span class="math display">\[
+s_{h,w}^i = -D_{\psi}(q_{h,w}^i)
+\]</span></p>
+<p>用于异常定位的异常图定义如下： <span class="math display">\[
+S_{AL}(x_i) := {s_{h,w}^i|(h,w) \in W_0 \times H_0}
+\]</span> 之后通过插值恢复到原图的分辨率，并对平滑边缘进行高斯滤波 <span
+class="math inline">\(\sigma = 4\)</span></p>
+<p>把最高的异常得分，作为这幅图的异常得分 <span class="math display">\[
+S_{AD}(x_i) := \max_{(h,w) \in W_0 \times H_0} s_{h,w}^i
+\]</span></p>
 
                 
               </div>
@@ -577,7 +415,7 @@ class="math inline">\(x_b\)</span>
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB/">#动作识别</a>
+        <a href="/tags/anomaly-detection-and-localization/">#anomaly detection and localization</a>
       
     </div>
   
@@ -589,8 +427,8 @@ class="math inline">\(x_b\)</span>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>SVFormer: Semi-supervised Video Transformer for Action Recognition</div>
-      <div>https://pixelpilot666.github.io/2024/03/03/SVFormer/</div>
+      <div>SimpleNet-阅读笔记</div>
+      <div>https://pixelpilot666.github.io/2024/03/15/SimpleNet-阅读笔记/</div>
     </div>
     <div class="license-meta">
       
@@ -602,7 +440,7 @@ class="math inline">\(x_b\)</span>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年3月3日</div>
+          <div>2024年3月15日</div>
         </div>
       
       
@@ -634,18 +472,12 @@ class="math inline">\(x_b\)</span>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/03/05/Stare-at-What-You-See%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" title="Stare-at-What-You-See阅读笔记">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Stare-at-What-You-See阅读笔记</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/06/11/Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0/" title="Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation精读笔记">
-                        <span class="hidden-mobile">Robust-Rcovery-of-Subspace-Structure-by-Low-Rank-Representation精读笔记</span>
+                      <a href="/2024/03/05/Stare-at-What-You-See%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" title="Stare-at-What-You-See阅读笔记">
+                        <span class="hidden-mobile">Stare-at-What-You-See阅读笔记</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

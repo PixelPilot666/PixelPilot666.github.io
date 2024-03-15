@@ -4,7 +4,32 @@
   
   
   <entry>
-    <title>-&lt; Stare-at-What-You-See阅读笔记</title>
+    <title>SimpleNet-阅读笔记</title>
+    <link href="/2024/03/15/SimpleNet-%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
+    <url>/2024/03/15/SimpleNet-%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</url>
+    
+    <content type="html"><![CDATA[<figure><img src="title.png" alt="title" /><figcaption aria-hidden="true">title</figcaption></figure><h1id="simplenet-a-simple-network-for-image-anomaly-detection-and-localization-阅读笔记">SimpleNet:A Simple Network for Image Anomaly Detection and Localization阅读笔记</h1><ul><li>论文地址[<a href="https://arxiv.org/abs/2303.15140">2303.15140]SimpleNet: A Simple Network for Image Anomaly Detection and Localization(arxiv.org)</a></li></ul><h2 id="亮点更准更快">亮点（更准、更快）</h2><ol type="1"><li><p>异常检测实现了99.6% 的AUROC</p></li><li><p>在单张3080ti上能实现77FPS</p></li></ol><h2 id="背景">背景</h2><ul><li><p><strong>基于重建的方法</strong>：认为异常不应该能被很好的重建出来，问题在于当异常与正常部分是同样的组成模式，那么异常部分还是可能会被重建出来的。</p></li><li><p><strong>基于合成的方法</strong>：主要是利用简单的数据增强的方法制作异常部分并随机的粘贴到正常数据上，这样做的缺点是，制作的异常与真实的异常并不相似。</p></li><li><p><strong>基于嵌入的方法</strong>：在特征空间上，异常的特征与正常的特征不在同一分布上，先用预训练模型学习正常的分布。之后通过特征提取的方法找出在正常分布之外的异常。这样的缺点在于，预训练模型是根据ImageNet数据集训练的，ImageNet中的数据与真实的工业图像之间有很大的差距，导致学习到的正常分布与工业图像的正常分布并不相同。</p></li></ul><h2 id="详细方法">详细方法</h2><figure><img src="figure_3.png" alt="图3" /><figcaption aria-hidden="true">图3</figcaption></figure><p>SimpleNet由一个特征提取器、一个特征适配器、一个异常特征生成器和一个判别器组成。其中特征生成器只在训练过程使用。</p><h3 id="特征提取器">特征提取器</h3><p>训练集 <span class="math inline">\(\mathcal{X_{train}}\)</span>，测试集 <span class="math inline">\(\mathcal{X_{text}}\)</span>，对于在 <span class="math inline">\(\mathcal{X_{train} \bigcup\mathcal{X_{test}}}\)</span> 中的任一图像 <spanclass="math inline">\(x_i \in \mathbb{R}^{H \times W \times 3}\)</span>。由<strong>ResNet</strong>作为骨架的并经过预训练的特征提取网络 <spanclass="math inline">\(\phi\)</span> 来进行特征提取。</p><h3 id="特征适配器">特征适配器</h3><p>因为工业图像通常与用于预训练的数据集中的图像有很大的不同，所以需要特征适配器<span class="math inline">\(G_{\theta}\)</span>将训练获得的特征转移到所需要的域。</p><p>这里的特征适配器可以由简单网络构成，如全连接层或者多层感知机（MLP）。作者经实验发现，单个全连接层也能产生很好的效果。</p><h3 id="异常特征生成器">异常特征生成器</h3><p>利用通过在正常特征里添加高斯噪声的方法形成异常特征。这种做法比直接合成缺陷图像要更有效。</p><figure><img src="figure_4.png" alt="图4" /><figcaption aria-hidden="true">图4</figcaption></figure><h3 id="判别器">判别器</h3><p>判别器是用来估计每个位置的特征是否正常，如果是正常特征则输出为正，否则输出为负。这里作者简单的利用了2层的MLP实现的。</p><h3 id="损失函数和训练过程">损失函数和训练过程</h3><p>损失函数是截断的 <span class="math inline">\(l1\)</span> 损失函数<span class="math display">\[l_{h,w}^i = max(0, th^+ - D_{\psi}(q_{h,w}^i)\ +\ max(0, th^- +D_{\psi}(q_{h,w}^{i-}))\]</span> 其中 <span class="math inline">\(th^+, th^-\)</span>是防止过拟合的截断项，默认设为0.5和-0.5，<spanclass="math inline">\(D_{\psi}(·)\)</span> 是判别器，<spanclass="math inline">\(q_{h,w}^i, q_{h,w}^{i-}\)</span>分别是正常特征和异常特征。</p><p>训练目标： <span class="math display">\[\mathcal{L} = \min_{\theta, \psi} \sum_{x^i \in \mathcal{X_{train}}}\sum_{h,w} \frac{l_{h,w}^i}{H_0*W_0}\]</span></p><h3 id="评分函数">评分函数</h3><p><span class="math display">\[s_{h,w}^i = -D_{\psi}(q_{h,w}^i)\]</span></p><p>用于异常定位的异常图定义如下： <span class="math display">\[S_{AL}(x_i) := {s_{h,w}^i|(h,w) \in W_0 \times H_0}\]</span> 之后通过插值恢复到原图的分辨率，并对平滑边缘进行高斯滤波 <spanclass="math inline">\(\sigma = 4\)</span></p><p>把最高的异常得分，作为这幅图的异常得分 <span class="math display">\[S_{AD}(x_i) := \max_{(h,w) \in W_0 \times H_0} s_{h,w}^i\]</span></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>论文粗读</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>anomaly detection and localization</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Stare-at-What-You-See阅读笔记</title>
     <link href="/2024/03/05/Stare-at-What-You-See%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
     <url>/2024/03/05/Stare-at-What-You-See%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</url>
     
