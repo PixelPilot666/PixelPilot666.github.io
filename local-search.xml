@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>CLMLF-阅读笔记</title>
+    <link href="/2025/05/14/CLMLF-%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
+    <url>/2025/05/14/CLMLF-%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</url>
+    
+    <content type="html"><![CDATA[<h1id="clmlfa-contrastive-learning-and-multi-layer-fusion-method-for-multimodal-sentiment-detection-阅读笔记">CLMLF:AContrastive Learning and Multi-Layer Fusion Method for MultimodalSentiment Detection 阅读笔记</h1><ul><li><p>论文链接：<ahref="https://aclanthology.org/2022.findings-naacl.175/">CLMLF:AContrastive Learning and Multi-Layer Fusion Method for MultimodalSentiment Detection</a></p></li><li><p>代码链接：<ahref="https://github.com/Link-Li/CLMLF">Link-Li/CLMLF</a></p></li><li><p>该论文收录于NAALC 2022</p></li></ul><figure><img src="title.png" alt="title" /><figcaption aria-hidden="true">title</figcaption></figure><h2 id="贡献">贡献</h2><ul><li><p>提出了一个基于Transformer-Encoder的多层融合模块。该模块利用多头自注意力捕捉图像和文本模态的内在相关性。</p></li><li><p>提出了两个对比学习任务——基于标签的对比学习和基于数据的对比学习。基于标签的对比学习任务可以使得模型学习多模态数据中的情感相关特征。基于数据的对比学习任务使得模型更具鲁棒性。增强模型对不变特征的学习能力。</p></li></ul><h2 id="方法">方法</h2><figure><img src="figure_2.png" alt="figure_2" /><figcaption aria-hidden="true">figure_2</figcaption></figure><h3 id="多层融合模块">多层融合模块</h3><p>该模块用于对其文本特征与图像特征。</p><p>该部分首先利用BERT对文本进行编码，得到文本特征 <spanclass="math inline">\(T = \{t_C, t_1, t_2, ..., t_S\}, T \in\mathbb{R}^{n_t \times d_t}\)</span>。利用ResNet对图像进行编码，得到图像特征 <spanclass="math inline">\(I_c^{\prime} \in \mathbb{R}^{p_i \times p_i \timesd_i}\)</span>。</p><p>利用以下公式，将图像特征展平到与文本特征相同维度。 <spanclass="math display">\[I^{\prime} = flatten(I_c^{\prime}W_I + b_I)\]</span> 其中 <span class="math inline">\(I^{\prime} = \{i_1^{\prime},i_2^{\prime}, ..., i_{n_i}^{\prime}\}, I^{\prime} \in \mathbb{R}^{n_i\times d_t}, n_i = p_i \times p_i\)</span></p><p>之后将 <span class="math inline">\(I^{\prime}\)</span> 输入到ImageTransformer层，利用该层获取最终的图像特征 <spanclass="math inline">\(I\)</span>。<em>我的理解：该层是为了更好的捕获图像全局特征。</em></p><p><span class="math display">\[\{i_1, i_2, ..., i_{n_i}\} = TE_I(\{i_1^{\prime}, i_2^{\prime}, ...,i_{n_i}^{\prime}\}) \\I = \{i_1, i_2, ..., i_{n_i}\}\]</span> 其中 <span class="math inline">\(TE_I\)</span>表示图像的Transformer Encoder。</p><p>之后将文本特征 <span class="math inline">\(T\)</span> 和 图像特征<span class="math inline">\(I\)</span>拼接起来，利用新型的多层Transformer来实现文本特征与图像特征的对齐。<span class="math display">\[\{f_1, f_2, ..., f_{n_t + n_i}\} = TE_M(concat(T, I)) \\F = \{f_1, f_2, ..., f_{n_t + n_i}\}\]</span> 其中 <span class="math inline">\(TE_M\)</span>表示多模态的Transformer Encoder。</p><p>之后利用一个简单的注意力机制得到多模态表示 <spanclass="math inline">\(R\)</span>，用于分类任务。 <spanclass="math display">\[\tilde{q_i} = GELU(f_iW_1 + b_1)W_2 + b_2 \\q_i = exp(\frac{\tilde{q_i}}{\sum^{n_t + n_i}_{j = 1}{\tilde{q_j}}}) \\\tilde{R} = \sum^{n_t + n_i}_{i = 1}{q_if_i} \\R = GELU(\tilde{R}W_R + b_R)\]</span> 其中 <span class="math inline">\(R \in\mathbb{R}^{d^t}\)</span>。</p><h3 id="基于标签的对比学习">基于标签的对比学习</h3><p>该部分的目的是令模型学习多模态数据中的情感相关特征。</p><p>该部分以batch为单位处理数据。</p><p>同一个batch中，对于消极标签而言，具有消极标签的数据为正样本，不具有消极标签的为负样本。对于积极标签同理。</p><p>根据正样本计算基于标签的对比学习损失 <spanclass="math inline">\(L_{lbcl}\)</span>。</p><p><em>具体算法见文章</em></p><h3 id="基于数据的对比学习">基于数据的对比学习</h3><p>该部分的目的是加强模型对数据的鲁棒性，增强模型对数据中不变特征的学习能力。</p><p>考虑到文字和图像的灵活表达。它可能会导致模型对数据的表面特征过于敏感，而不是专注于融合文本和图像中的不变特征，即有效特征。情感相关特征应该存在于这些有效特征中，因为用户想要表达的意思的真实含义不应该随着文本和图像的变化而变化。</p><p>得到基于数据的对比学习损失 <spanclass="math inline">\(L_{dbcl}\)</span>。</p><p><em>具体算法见文章</em></p><h3 id="损失函数">损失函数</h3><p>利用交叉熵损失得到情感分类任务的loss： <span class="math display">\[L_sc = Cross-Entropy(GELU(RW_{sc} + b_{sc}))\]</span> 最终损失如下： <span class="math display">\[L = L_sc + \lambda_{lbcl}L_{lbcl} + \lambda_{dbcl}L_{dbcl}\]</span></p><h2 id="实验">实验</h2><p><strong>数据集:</strong></p><ul><li><p>MVSA-Single</p></li><li><p>MVSA-Multiple</p></li><li><p>HFM</p><figure><img src="table_2.png" alt="table_2" /><figcaption aria-hidden="true">table_2</figcaption></figure></li></ul><p><strong>整体结果：</strong></p><figure><img src="table_1.png" alt="table_1" /><figcaption aria-hidden="true">table_1</figcaption></figure><p><strong>消融实验：</strong></p><figure><img src="table_3.png" alt="table_3" /><figcaption aria-hidden="true">table_3</figcaption></figure><p><strong>多层融合中的transformer层数选择：</strong></p><figure><img src="figure_3.png" alt="figure_3" /><figcaption aria-hidden="true">figure_3</figcaption></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>论文粗读</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>多模态情感识别</tag>
+      
+      <tag>ACL</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>SimpleNet-阅读笔记</title>
     <link href="/2024/03/15/SimpleNet-%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
     <url>/2024/03/15/SimpleNet-%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</url>

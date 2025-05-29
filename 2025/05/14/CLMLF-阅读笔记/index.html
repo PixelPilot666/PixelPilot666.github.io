@@ -16,28 +16,27 @@
   <meta name="author" content="PixelPilot">
   <meta name="keywords" content="">
   
-    <meta name="description" content="title  SimpleNet: A Simple Network for Image Anomaly Detection and Localization 阅读笔记  论文地址[2303.15140] SimpleNet: A Simple Network for Image Anomaly Detection and Localization (arxiv.org)">
+    <meta name="description" content="CLMLF:A Contrastive Learning and Multi-Layer Fusion Method for Multimodal Sentiment Detection 阅读笔记  论文链接：CLMLF:A Contrastive Learning and Multi-Layer Fusion Method for Multimodal Sentiment Detec">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SimpleNet-阅读笔记">
-<meta property="og:url" content="https://pixelpilot666.github.io/2024/03/15/SimpleNet-%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:title" content="CLMLF-阅读笔记">
+<meta property="og:url" content="https://pixelpilot666.github.io/2025/05/14/CLMLF-%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Pixel Pilot">
-<meta property="og:description" content="title  SimpleNet: A Simple Network for Image Anomaly Detection and Localization 阅读笔记  论文地址[2303.15140] SimpleNet: A Simple Network for Image Anomaly Detection and Localization (arxiv.org)">
+<meta property="og:description" content="CLMLF:A Contrastive Learning and Multi-Layer Fusion Method for Multimodal Sentiment Detection 阅读笔记  论文链接：CLMLF:A Contrastive Learning and Multi-Layer Fusion Method for Multimodal Sentiment Detec">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/15/SimpleNet-%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/title.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/15/SimpleNet-%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/figure_3.png">
-<meta property="og:image" content="https://pixelpilot666.github.io/2024/03/15/SimpleNet-%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/figure_4.png">
-<meta property="article:published_time" content="2024-03-15T02:12:19.000Z">
-<meta property="article:modified_time" content="2024-03-15T06:57:28.686Z">
+<meta property="og:image" content="https://pixelpilot666.github.io/%5Ccover_imgs%5CCLMLF.png">
+<meta property="article:published_time" content="2025-05-14T09:03:26.000Z">
+<meta property="article:modified_time" content="2025-05-29T08:40:49.010Z">
 <meta property="article:author" content="PixelPilot">
-<meta property="article:tag" content="anomaly detection and localization">
+<meta property="article:tag" content="多模态情感识别">
+<meta property="article:tag" content="ACL">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://pixelpilot666.github.io/2024/03/15/SimpleNet-%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/title.png">
+<meta name="twitter:image" content="https://pixelpilot666.github.io/%5Ccover_imgs%5CCLMLF.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>SimpleNet-阅读笔记 - Pixel Pilot</title>
+  <title>CLMLF-阅读笔记 - Pixel Pilot</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -220,7 +219,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="SimpleNet-阅读笔记"></span>
+            <span id="subtitle" data-typed-text="CLMLF-阅读笔记"></span>
           
         </div>
 
@@ -231,8 +230,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-03-15 10:12" pubdate>
-          2024年3月15日 上午
+        <time datetime="2025-05-14 17:03" pubdate>
+          2025年5月14日 下午
         </time>
       </span>
     
@@ -243,7 +242,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          2k 字
         
       </span>
     
@@ -254,7 +253,7 @@
         
         
         
-          13 分钟
+          17 分钟
         
       </span>
     
@@ -300,88 +299,124 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">SimpleNet-阅读笔记</h1>
+            <h1 style="display: none">CLMLF-阅读笔记</h1>
             
             
               <div class="markdown-body">
                 
-                <figure>
+                <h1
+id="clmlfa-contrastive-learning-and-multi-layer-fusion-method-for-multimodal-sentiment-detection-阅读笔记">CLMLF:A
+Contrastive Learning and Multi-Layer Fusion Method for Multimodal
+Sentiment Detection 阅读笔记</h1>
+<ul>
+<li><p>论文链接：<a
+target="_blank" rel="noopener" href="https://aclanthology.org/2022.findings-naacl.175/">CLMLF:A
+Contrastive Learning and Multi-Layer Fusion Method for Multimodal
+Sentiment Detection</a></p></li>
+<li><p>代码链接：<a
+target="_blank" rel="noopener" href="https://github.com/Link-Li/CLMLF">Link-Li/CLMLF</a></p></li>
+<li><p>该论文收录于NAALC 2022</p></li>
+</ul>
+<figure>
 <img src="title.png" srcset="/img/loading.gif" lazyload alt="title" />
 <figcaption aria-hidden="true">title</figcaption>
 </figure>
-<h1
-id="simplenet-a-simple-network-for-image-anomaly-detection-and-localization-阅读笔记">SimpleNet:
-A Simple Network for Image Anomaly Detection and Localization
-阅读笔记</h1>
+<h2 id="贡献">贡献</h2>
 <ul>
-<li>论文地址[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2303.15140">2303.15140]
-SimpleNet: A Simple Network for Image Anomaly Detection and Localization
-(arxiv.org)</a></li>
+<li><p>提出了一个基于Transformer-Encoder的多层融合模块。该模块利用多头自注意力捕捉图像和文本模态的内在相关性。</p></li>
+<li><p>提出了两个对比学习任务——基于标签的对比学习和基于数据的对比学习。基于标签的对比学习任务可以使得模型学习多模态数据中的情感相关特征。基于数据的对比学习任务使得模型更具鲁棒性。增强模型对不变特征的学习能力。</p></li>
 </ul>
-<h2 id="亮点更准更快">亮点（更准、更快）</h2>
-<ol type="1">
-<li><p>异常检测实现了99.6% 的AUROC</p></li>
-<li><p>在单张3080ti上能实现77FPS</p></li>
-</ol>
-<h2 id="背景">背景</h2>
-<ul>
-<li><p><strong>基于重建的方法</strong>
-：认为异常不应该能被很好的重建出来，问题在于当异常与正常部分是同样的组成模式，那么异常部分还是可能会被重建出来的。</p></li>
-<li><p><strong>基于合成的方法</strong>：主要是利用简单的数据增强的方法制作异常部分并随机的粘贴到正常数据上，这样做的缺点是，制作的异常与真实的异常并不相似。</p></li>
-<li><p><strong>基于嵌入的方法</strong>：在特征空间上，异常的特征与正常的特征不在同一分布上，先用预训练模型学习正常的分布。之后通过特征提取的方法找出在正常分布之外的异常。这样的缺点在于，预训练模型是根据ImageNet数据集训练的，ImageNet中的数据与真实的工业图像之间有很大的差距，导致学习到的正常分布与工业图像的正常分布并不相同。</p></li>
-</ul>
-<h2 id="详细方法">详细方法</h2>
+<h2 id="方法">方法</h2>
 <figure>
-<img src="figure_3.png" srcset="/img/loading.gif" lazyload alt="图3" />
-<figcaption aria-hidden="true">图3</figcaption>
+<img src="figure_2.png" srcset="/img/loading.gif" lazyload alt="figure_2" />
+<figcaption aria-hidden="true">figure_2</figcaption>
 </figure>
-<p>SimpleNet由一个特征提取器、一个特征适配器、一个异常特征生成器和一个判别器组成。其中特征生成器只在训练过程使用。</p>
-<h3 id="特征提取器">特征提取器</h3>
-<p>训练集 <span class="math inline">\(\mathcal{X_{train}}\)</span>
-，测试集 <span class="math inline">\(\mathcal{X_{text}}\)</span>
-，对于在 <span class="math inline">\(\mathcal{X_{train} \bigcup
-\mathcal{X_{test}}}\)</span> 中的任一图像 <span
-class="math inline">\(x_i \in \mathbb{R}^{H \times W \times 3}\)</span>
-。由<strong>ResNet</strong>作为骨架的并经过预训练的特征提取网络 <span
-class="math inline">\(\phi\)</span> 来进行特征提取。</p>
-<h3 id="特征适配器">特征适配器</h3>
-<p>因为工业图像通常与用于预训练的数据集中的图像有很大的不同，所以需要特征适配器
-<span class="math inline">\(G_{\theta}\)</span>
-将训练获得的特征转移到所需要的域。</p>
-<p>这里的特征适配器可以由简单网络构成，如全连接层或者多层感知机（MLP）。作者经实验发现，单个全连接层也能产生很好的效果。</p>
-<h3 id="异常特征生成器">异常特征生成器</h3>
-<p>利用通过在正常特征里添加高斯噪声的方法形成异常特征。这种做法比直接合成缺陷图像要更有效。</p>
-<figure>
-<img src="figure_4.png" srcset="/img/loading.gif" lazyload alt="图4" />
-<figcaption aria-hidden="true">图4</figcaption>
-</figure>
-<h3 id="判别器">判别器</h3>
-<p>判别器是用来估计每个位置的特征是否正常，如果是正常特征则输出为正，否则输出为负。这里作者简单的利用了2层的MLP实现的。</p>
-<h3 id="损失函数和训练过程">损失函数和训练过程</h3>
-<p>损失函数是截断的 <span class="math inline">\(l1\)</span> 损失函数
-<span class="math display">\[
-l_{h,w}^i = max(0, th^+ - D_{\psi}(q_{h,w}^i)\ +\ max(0, th^- +
-D_{\psi}(q_{h,w}^{i-}))
-\]</span> 其中 <span class="math inline">\(th^+, th^-\)</span>
-是防止过拟合的截断项，默认设为0.5和-0.5，<span
-class="math inline">\(D_{\psi}(·)\)</span> 是判别器，<span
-class="math inline">\(q_{h,w}^i, q_{h,w}^{i-}\)</span>
-分别是正常特征和异常特征。</p>
-<p>训练目标： <span class="math display">\[
-\mathcal{L} = \min_{\theta, \psi} \sum_{x^i \in \mathcal{X_{train}}}
-\sum_{h,w} \frac{l_{h,w}^i}{H_0*W_0}
-\]</span></p>
-<h3 id="评分函数">评分函数</h3>
+<h3 id="多层融合模块">多层融合模块</h3>
+<p>该模块用于对其文本特征与图像特征。</p>
+<p>该部分首先利用BERT对文本进行编码，得到文本特征 <span
+class="math inline">\(T = \{t_C, t_1, t_2, ..., t_S\}, T \in
+\mathbb{R}^{n_t \times d_t}\)</span>
+。利用ResNet对图像进行编码，得到图像特征 <span
+class="math inline">\(I_c^{\prime} \in \mathbb{R}^{p_i \times p_i \times
+d_i}\)</span>。</p>
+<p>利用以下公式，将图像特征展平到与文本特征相同维度。 <span
+class="math display">\[
+I^{\prime} = flatten(I_c^{\prime}W_I + b_I)
+\]</span> 其中 <span class="math inline">\(I^{\prime} = \{i_1^{\prime},
+i_2^{\prime}, ..., i_{n_i}^{\prime}\}, I^{\prime} \in \mathbb{R}^{n_i
+\times d_t}, n_i = p_i \times p_i\)</span></p>
+<p>之后将 <span class="math inline">\(I^{\prime}\)</span> 输入到Image
+Transformer层，利用该层获取最终的图像特征 <span
+class="math inline">\(I\)</span>
+。<em>我的理解：该层是为了更好的捕获图像全局特征。</em></p>
 <p><span class="math display">\[
-s_{h,w}^i = -D_{\psi}(q_{h,w}^i)
+\{i_1, i_2, ..., i_{n_i}\} = TE_I(\{i_1^{\prime}, i_2^{\prime}, ...,
+i_{n_i}^{\prime}\}) \\
+I = \{i_1, i_2, ..., i_{n_i}\}
+\]</span> 其中 <span class="math inline">\(TE_I\)</span>
+表示图像的Transformer Encoder。</p>
+<p>之后将文本特征 <span class="math inline">\(T\)</span> 和 图像特征
+<span class="math inline">\(I\)</span>
+拼接起来，利用新型的多层Transformer来实现文本特征与图像特征的对齐。
+<span class="math display">\[
+\{f_1, f_2, ..., f_{n_t + n_i}\} = TE_M(concat(T, I)) \\
+F = \{f_1, f_2, ..., f_{n_t + n_i}\}
+\]</span> 其中 <span class="math inline">\(TE_M\)</span>
+表示多模态的Transformer Encoder。</p>
+<p>之后利用一个简单的注意力机制得到多模态表示 <span
+class="math inline">\(R\)</span>，用于分类任务。 <span
+class="math display">\[
+\tilde{q_i} = GELU(f_iW_1 + b_1)W_2 + b_2 \\
+q_i = exp(\frac{\tilde{q_i}}{\sum^{n_t + n_i}_{j = 1}{\tilde{q_j}}}) \\
+\tilde{R} = \sum^{n_t + n_i}_{i = 1}{q_if_i} \\
+R = GELU(\tilde{R}W_R + b_R)
+\]</span> 其中 <span class="math inline">\(R \in
+\mathbb{R}^{d^t}\)</span>。</p>
+<h3 id="基于标签的对比学习">基于标签的对比学习</h3>
+<p>该部分的目的是令模型学习多模态数据中的情感相关特征。</p>
+<p>该部分以batch为单位处理数据。</p>
+<p>同一个batch中，对于消极标签而言，具有消极标签的数据为正样本，不具有消极标签的为负样本。对于积极标签同理。</p>
+<p>根据正样本计算基于标签的对比学习损失 <span
+class="math inline">\(L_{lbcl}\)</span>。</p>
+<p><em>具体算法见文章</em></p>
+<h3 id="基于数据的对比学习">基于数据的对比学习</h3>
+<p>该部分的目的是加强模型对数据的鲁棒性，增强模型对数据中不变特征的学习能力。</p>
+<p>考虑到文字和图像的灵活表达。它可能会导致模型对数据的表面特征过于敏感，而不是专注于融合文本和图像中的不变特征，即有效特征。情感相关特征应该存在于这些有效特征中，因为用户想要表达的意思的真实含义不应该随着文本和图像的变化而变化。</p>
+<p>得到基于数据的对比学习损失 <span
+class="math inline">\(L_{dbcl}\)</span>。</p>
+<p><em>具体算法见文章</em></p>
+<h3 id="损失函数">损失函数</h3>
+<p>利用交叉熵损失得到情感分类任务的loss： <span class="math display">\[
+L_sc = Cross-Entropy(GELU(RW_{sc} + b_{sc}))
+\]</span> 最终损失如下： <span class="math display">\[
+L = L_sc + \lambda_{lbcl}L_{lbcl} + \lambda_{dbcl}L_{dbcl}
 \]</span></p>
-<p>用于异常定位的异常图定义如下： <span class="math display">\[
-S_{AL}(x_i) := {s_{h,w}^i|(h,w) \in W_0 \times H_0}
-\]</span> 之后通过插值恢复到原图的分辨率，并对平滑边缘进行高斯滤波 <span
-class="math inline">\(\sigma = 4\)</span></p>
-<p>把最高的异常得分，作为这幅图的异常得分 <span class="math display">\[
-S_{AD}(x_i) := \max_{(h,w) \in W_0 \times H_0} s_{h,w}^i
-\]</span></p>
+<h2 id="实验">实验</h2>
+<p><strong>数据集:</strong></p>
+<ul>
+<li><p>MVSA-Single</p></li>
+<li><p>MVSA-Multiple</p></li>
+<li><p>HFM</p>
+<figure>
+<img src="table_2.png" srcset="/img/loading.gif" lazyload alt="table_2" />
+<figcaption aria-hidden="true">table_2</figcaption>
+</figure></li>
+</ul>
+<p><strong>整体结果：</strong></p>
+<figure>
+<img src="table_1.png" srcset="/img/loading.gif" lazyload alt="table_1" />
+<figcaption aria-hidden="true">table_1</figcaption>
+</figure>
+<p><strong>消融实验：</strong></p>
+<figure>
+<img src="table_3.png" srcset="/img/loading.gif" lazyload alt="table_3" />
+<figcaption aria-hidden="true">table_3</figcaption>
+</figure>
+<p><strong>多层融合中的transformer层数选择：</strong></p>
+<figure>
+<img src="figure_3.png" srcset="/img/loading.gif" lazyload alt="figure_3" />
+<figcaption aria-hidden="true">figure_3</figcaption>
+</figure>
 
                 
               </div>
@@ -415,7 +450,9 @@ S_{AD}(x_i) := \max_{(h,w) \in W_0 \times H_0} s_{h,w}^i
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/anomaly-detection-and-localization/">#anomaly detection and localization</a>
+        <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81%E6%83%85%E6%84%9F%E8%AF%86%E5%88%AB/">#多模态情感识别</a>
+      
+        <a href="/tags/ACL/">#ACL</a>
       
     </div>
   
@@ -427,8 +464,8 @@ S_{AD}(x_i) := \max_{(h,w) \in W_0 \times H_0} s_{h,w}^i
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>SimpleNet-阅读笔记</div>
-      <div>https://pixelpilot666.github.io/2024/03/15/SimpleNet-阅读笔记/</div>
+      <div>CLMLF-阅读笔记</div>
+      <div>https://pixelpilot666.github.io/2025/05/14/CLMLF-阅读笔记/</div>
     </div>
     <div class="license-meta">
       
@@ -440,7 +477,7 @@ S_{AD}(x_i) := \max_{(h,w) \in W_0 \times H_0} s_{h,w}^i
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年3月15日</div>
+          <div>2025年5月14日</div>
         </div>
       
       
@@ -472,18 +509,12 @@ S_{AD}(x_i) := \max_{(h,w) \in W_0 \times H_0} s_{h,w}^i
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/05/14/CLMLF-%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" title="CLMLF-阅读笔记">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">CLMLF-阅读笔记</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/03/05/Stare-at-What-You-See%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" title="Stare-at-What-You-See阅读笔记">
-                        <span class="hidden-mobile">Stare-at-What-You-See阅读笔记</span>
+                      <a href="/2024/03/15/SimpleNet-%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" title="SimpleNet-阅读笔记">
+                        <span class="hidden-mobile">SimpleNet-阅读笔记</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
